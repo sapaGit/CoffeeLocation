@@ -59,7 +59,7 @@ extension NavigationManager: NavigationProtocol {
     func navigate(_ route: Route) {
         switch route {
         case .login:
-            setRootController(createLoginViewController())
+            setRootController(createLoginModule())
         case .restaurants:
             setRootController(createRestaurantViewController())
         }
@@ -77,8 +77,9 @@ private extension NavigationManager {
     }
 
 
-    func createLoginViewController() -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: LoginViewController())
+    func createLoginModule() -> UINavigationController {
+        let loginModule = LoginModuleBuilder.build()
+        let navigationController = UINavigationController(rootViewController: loginModule)
         return navigationController
     }
 

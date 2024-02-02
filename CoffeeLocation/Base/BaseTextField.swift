@@ -7,8 +7,8 @@ import UIKit
 
 private enum Constants {
     static let fontSize: CGFloat = 16.0
-    static let padding: CGFloat = 10.0
-    static let cornerRadius: CGFloat = 10.0
+    static let padding: CGFloat = 15.0
+    static let cornerRadius: CGFloat = 22.0
 }
 
 class BaseTextField: UITextField {
@@ -27,6 +27,8 @@ class BaseTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()
+
+        delegate = self
     }
 
     required init?(coder: NSCoder) {
@@ -53,8 +55,17 @@ class BaseTextField: UITextField {
 extension BaseTextField {
 
     private func setupSubviews() {
-        backgroundColor = .systemBackground
+        backgroundColor = .clear
+        textColor = .labelText
         layer.cornerRadius = Constants.cornerRadius
+        layer.borderColor = UIColor.labelText.cgColor
+        layer.borderWidth = 2
         font = .systemFont(ofSize: Constants.fontSize)
+    }
+}
+
+extension BaseTextField: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }

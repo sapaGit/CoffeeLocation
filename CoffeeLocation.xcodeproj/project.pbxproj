@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A04CCE8E2B6D213F006FC749 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCE8D2B6D213F006FC749 /* LoginPresenter.swift */; };
+		A04CCE902B6D2150006FC749 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCE8F2B6D2150006FC749 /* LoginInteractor.swift */; };
+		A04CCE922B6D215F006FC749 /* LoginModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCE912B6D215F006FC749 /* LoginModuleBuilder.swift */; };
+		A04CCE942B6D2168006FC749 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCE932B6D2168006FC749 /* LoginRouter.swift */; };
+		A04CCE962B6D21B8006FC749 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCE952B6D21B8006FC749 /* BaseViewController.swift */; };
+		A04CCE982B6D2277006FC749 /* BasePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCE972B6D2277006FC749 /* BasePresenterProtocol.swift */; };
+		A04CCE9B2B6D2658006FC749 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCE9A2B6D2658006FC749 /* LoginService.swift */; };
 		A0D8D3AF2B6CD88E0018C98F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D8D3AE2B6CD88E0018C98F /* AppDelegate.swift */; };
 		A0D8D3B12B6CD88E0018C98F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D8D3B02B6CD88E0018C98F /* SceneDelegate.swift */; };
 		A0D8D3B32B6CD88E0018C98F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D8D3B22B6CD88E0018C98F /* LoginViewController.swift */; };
@@ -35,6 +42,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A04CCE8D2B6D213F006FC749 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		A04CCE8F2B6D2150006FC749 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		A04CCE912B6D215F006FC749 /* LoginModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModuleBuilder.swift; sourceTree = "<group>"; };
+		A04CCE932B6D2168006FC749 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		A04CCE952B6D21B8006FC749 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		A04CCE972B6D2277006FC749 /* BasePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenterProtocol.swift; sourceTree = "<group>"; };
+		A04CCE9A2B6D2658006FC749 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		A0D8D3AB2B6CD88E0018C98F /* CoffeeLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0D8D3AE2B6CD88E0018C98F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0D8D3B02B6CD88E0018C98F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +89,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A04CCE992B6D2642006FC749 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A04CCE9A2B6D2658006FC749 /* LoginService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		A0D8D3A22B6CD88E0018C98F = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +121,7 @@
 				A0D8D3EE2B6CDC9F0018C98F /* Managers */,
 				A0D8D3C52B6CD9DB0018C98F /* Scenes */,
 				A0D8D3E92B6CDC210018C98F /* Base */,
+				A04CCE992B6D2642006FC749 /* Services */,
 				A0D8D3DF2B6CDB770018C98F /* Common */,
 				A0D8D3DA2B6CDB2C0018C98F /* Extensions */,
 				A0D8D3C62B6CD9F30018C98F /* Storyboards */,
@@ -111,6 +134,10 @@
 			isa = PBXGroup;
 			children = (
 				A0D8D3B22B6CD88E0018C98F /* LoginViewController.swift */,
+				A04CCE8D2B6D213F006FC749 /* LoginPresenter.swift */,
+				A04CCE8F2B6D2150006FC749 /* LoginInteractor.swift */,
+				A04CCE932B6D2168006FC749 /* LoginRouter.swift */,
+				A04CCE912B6D215F006FC749 /* LoginModuleBuilder.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -214,6 +241,8 @@
 			isa = PBXGroup;
 			children = (
 				A0D8D3EA2B6CDC390018C98F /* BaseTextField.swift */,
+				A04CCE952B6D21B8006FC749 /* BaseViewController.swift */,
+				A04CCE972B6D2277006FC749 /* BasePresenterProtocol.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -349,10 +378,15 @@
 				A0D8D3E82B6CDBEE0018C98F /* UITableView+extension.swift in Sources */,
 				A0D8D3E12B6CDB8D0018C98F /* TypeDescribable.swift in Sources */,
 				A0D8D3EB2B6CDC390018C98F /* BaseTextField.swift in Sources */,
+				A04CCE962B6D21B8006FC749 /* BaseViewController.swift in Sources */,
 				A0D8D3F22B6CDCC80018C98F /* RequestProtocol.swift in Sources */,
+				A04CCE8E2B6D213F006FC749 /* LoginPresenter.swift in Sources */,
 				A0D8D3B32B6CD88E0018C98F /* LoginViewController.swift in Sources */,
 				A0D8D3FC2B6CDE790018C98F /* RestaurantsViewController.swift in Sources */,
+				A04CCE922B6D215F006FC749 /* LoginModuleBuilder.swift in Sources */,
+				A04CCE942B6D2168006FC749 /* LoginRouter.swift in Sources */,
 				A0D8D3F02B6CDCB60018C98F /* NetworkManager.swift in Sources */,
+				A04CCE902B6D2150006FC749 /* LoginInteractor.swift in Sources */,
 				A0D8D3AF2B6CD88E0018C98F /* AppDelegate.swift in Sources */,
 				A0D8D3FF2B6CDF680018C98F /* LoginModel.swift in Sources */,
 				A0D8D3F62B6CDCF70018C98F /* AFResult.swift in Sources */,
@@ -360,8 +394,10 @@
 				A0D8D3E42B6CDBBA0018C98F /* Encodable+extension.swift in Sources */,
 				A0D8D3DC2B6CDB390018C98F /* UIView+extension.swift in Sources */,
 				A0D8D4022B6CDFD20018C98F /* KeychainManager.swift in Sources */,
+				A04CCE982B6D2277006FC749 /* BasePresenterProtocol.swift in Sources */,
 				A0D8D3F42B6CDCE20018C98F /* NetworkError.swift in Sources */,
 				A0D8D3DE2B6CDB5A0018C98F /* UIStackView+extension.swift in Sources */,
+				A04CCE9B2B6D2658006FC749 /* LoginService.swift in Sources */,
 				A0D8D3B12B6CD88E0018C98F /* SceneDelegate.swift in Sources */,
 				A0D8D3FA2B6CDD8D0018C98F /* NavigationManager.swift in Sources */,
 			);
