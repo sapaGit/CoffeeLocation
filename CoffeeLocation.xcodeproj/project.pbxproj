@@ -14,6 +14,14 @@
 		A04CCE962B6D21B8006FC749 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCE952B6D21B8006FC749 /* BaseViewController.swift */; };
 		A04CCE982B6D2277006FC749 /* BasePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCE972B6D2277006FC749 /* BasePresenterProtocol.swift */; };
 		A04CCE9B2B6D2658006FC749 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCE9A2B6D2658006FC749 /* LoginService.swift */; };
+		A04CCEA32B6D48BC006FC749 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCEA22B6D48BC006FC749 /* BaseButton.swift */; };
+		A04CCEA52B6D4AA5006FC749 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCEA42B6D4AA5006FC749 /* RegistrationViewController.swift */; };
+		A04CCEA72B6D4AB0006FC749 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCEA62B6D4AB0006FC749 /* RegistrationPresenter.swift */; };
+		A04CCEA92B6D4ABE006FC749 /* RegistrationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCEA82B6D4ABE006FC749 /* RegistrationInteractor.swift */; };
+		A04CCEAB2B6D4AC8006FC749 /* RegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCEAA2B6D4AC8006FC749 /* RegistrationRouter.swift */; };
+		A04CCEAD2B6D4AD9006FC749 /* RegistrationModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCEAC2B6D4AD9006FC749 /* RegistrationModuleBuilder.swift */; };
+		A04CCEAF2B6D4BBE006FC749 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCEAE2B6D4BBE006FC749 /* RegistrationService.swift */; };
+		A04CCEB12B6D4C05006FC749 /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCEB02B6D4C05006FC749 /* RegistrationModel.swift */; };
 		A0D8D3AF2B6CD88E0018C98F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D8D3AE2B6CD88E0018C98F /* AppDelegate.swift */; };
 		A0D8D3B12B6CD88E0018C98F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D8D3B02B6CD88E0018C98F /* SceneDelegate.swift */; };
 		A0D8D3B32B6CD88E0018C98F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D8D3B22B6CD88E0018C98F /* LoginViewController.swift */; };
@@ -49,6 +57,14 @@
 		A04CCE952B6D21B8006FC749 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		A04CCE972B6D2277006FC749 /* BasePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenterProtocol.swift; sourceTree = "<group>"; };
 		A04CCE9A2B6D2658006FC749 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		A04CCEA22B6D48BC006FC749 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		A04CCEA42B6D4AA5006FC749 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		A04CCEA62B6D4AB0006FC749 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		A04CCEA82B6D4ABE006FC749 /* RegistrationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationInteractor.swift; sourceTree = "<group>"; };
+		A04CCEAA2B6D4AC8006FC749 /* RegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
+		A04CCEAC2B6D4AD9006FC749 /* RegistrationModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModuleBuilder.swift; sourceTree = "<group>"; };
+		A04CCEAE2B6D4BBE006FC749 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
+		A04CCEB02B6D4C05006FC749 /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
 		A0D8D3AB2B6CD88E0018C98F /* CoffeeLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0D8D3AE2B6CD88E0018C98F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0D8D3B02B6CD88E0018C98F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				A04CCE9A2B6D2658006FC749 /* LoginService.swift */,
+				A04CCEAE2B6D4BBE006FC749 /* RegistrationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -145,6 +162,11 @@
 		A0D8D3C32B6CD9730018C98F /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				A04CCEA42B6D4AA5006FC749 /* RegistrationViewController.swift */,
+				A04CCEA62B6D4AB0006FC749 /* RegistrationPresenter.swift */,
+				A04CCEA82B6D4ABE006FC749 /* RegistrationInteractor.swift */,
+				A04CCEAA2B6D4AC8006FC749 /* RegistrationRouter.swift */,
+				A04CCEAC2B6D4AD9006FC749 /* RegistrationModuleBuilder.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -161,8 +183,8 @@
 		A0D8D3C52B6CD9DB0018C98F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				A0D8D3C22B6CD9200018C98F /* Login */,
 				A0D8D3C32B6CD9730018C98F /* Registration */,
+				A0D8D3C22B6CD9200018C98F /* Login */,
 				A0D8D3D02B6CDA9D0018C98F /* Restaurants */,
 				A0D8D3D22B6CDAB90018C98F /* Menu */,
 				A0D8D3D12B6CDAAE0018C98F /* Map */,
@@ -241,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				A0D8D3EA2B6CDC390018C98F /* BaseTextField.swift */,
+				A04CCEA22B6D48BC006FC749 /* BaseButton.swift */,
 				A04CCE952B6D21B8006FC749 /* BaseViewController.swift */,
 				A04CCE972B6D2277006FC749 /* BasePresenterProtocol.swift */,
 			);
@@ -280,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				A0D8D3FE2B6CDF680018C98F /* LoginModel.swift */,
+				A04CCEB02B6D4C05006FC749 /* RegistrationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -375,17 +399,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A04CCEB12B6D4C05006FC749 /* RegistrationModel.swift in Sources */,
+				A04CCEAF2B6D4BBE006FC749 /* RegistrationService.swift in Sources */,
+				A04CCEA32B6D48BC006FC749 /* BaseButton.swift in Sources */,
 				A0D8D3E82B6CDBEE0018C98F /* UITableView+extension.swift in Sources */,
 				A0D8D3E12B6CDB8D0018C98F /* TypeDescribable.swift in Sources */,
 				A0D8D3EB2B6CDC390018C98F /* BaseTextField.swift in Sources */,
 				A04CCE962B6D21B8006FC749 /* BaseViewController.swift in Sources */,
 				A0D8D3F22B6CDCC80018C98F /* RequestProtocol.swift in Sources */,
 				A04CCE8E2B6D213F006FC749 /* LoginPresenter.swift in Sources */,
+				A04CCEA92B6D4ABE006FC749 /* RegistrationInteractor.swift in Sources */,
+				A04CCEAD2B6D4AD9006FC749 /* RegistrationModuleBuilder.swift in Sources */,
 				A0D8D3B32B6CD88E0018C98F /* LoginViewController.swift in Sources */,
 				A0D8D3FC2B6CDE790018C98F /* RestaurantsViewController.swift in Sources */,
 				A04CCE922B6D215F006FC749 /* LoginModuleBuilder.swift in Sources */,
 				A04CCE942B6D2168006FC749 /* LoginRouter.swift in Sources */,
 				A0D8D3F02B6CDCB60018C98F /* NetworkManager.swift in Sources */,
+				A04CCEA52B6D4AA5006FC749 /* RegistrationViewController.swift in Sources */,
 				A04CCE902B6D2150006FC749 /* LoginInteractor.swift in Sources */,
 				A0D8D3AF2B6CD88E0018C98F /* AppDelegate.swift in Sources */,
 				A0D8D3FF2B6CDF680018C98F /* LoginModel.swift in Sources */,
@@ -394,12 +424,14 @@
 				A0D8D3E42B6CDBBA0018C98F /* Encodable+extension.swift in Sources */,
 				A0D8D3DC2B6CDB390018C98F /* UIView+extension.swift in Sources */,
 				A0D8D4022B6CDFD20018C98F /* KeychainManager.swift in Sources */,
+				A04CCEA72B6D4AB0006FC749 /* RegistrationPresenter.swift in Sources */,
 				A04CCE982B6D2277006FC749 /* BasePresenterProtocol.swift in Sources */,
 				A0D8D3F42B6CDCE20018C98F /* NetworkError.swift in Sources */,
 				A0D8D3DE2B6CDB5A0018C98F /* UIStackView+extension.swift in Sources */,
 				A04CCE9B2B6D2658006FC749 /* LoginService.swift in Sources */,
 				A0D8D3B12B6CD88E0018C98F /* SceneDelegate.swift in Sources */,
 				A0D8D3FA2B6CDD8D0018C98F /* NavigationManager.swift in Sources */,
+				A04CCEAB2B6D4AC8006FC749 /* RegistrationRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

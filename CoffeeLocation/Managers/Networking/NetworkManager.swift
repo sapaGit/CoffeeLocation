@@ -31,16 +31,13 @@ final class NetworkManager: NetworkManagerProtocol {
             return
         }
 
-        AF.request(url, method: request.method, parameters: request.params)
+        AF.request(url, method: request.method, parameters: request.params, encoding: JSONEncoding.default, headers: request.headers)
             .validate()
             .responseDecodable(of: T.self) { response in
                 switch response.result {
                 case .success(let answer):
                     completion(.success(answer))
                 case .failure:
-
-                    // TODO: add Alamofire error handling
-
                     completion(.error(NetworkError(error)))
                 }
             }
