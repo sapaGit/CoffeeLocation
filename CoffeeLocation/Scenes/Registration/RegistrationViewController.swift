@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  RegistrationViewController.swift
 //  CoffeeLocation
 //
 
@@ -7,7 +7,7 @@
 import UIKit
 import SnapKit
 
-protocol LoginViewProtocol: AnyObject {
+protocol RegistrationViewProtocol: AnyObject {
     /// Notifies that new data has been received.
     func didReceiveData()
 
@@ -15,7 +15,7 @@ protocol LoginViewProtocol: AnyObject {
     func pushViewController(_ viewController: UIViewController, animated: Bool)
 }
 
-final class LoginViewController: BaseViewController {
+final class RegistrationViewController: BaseViewController {
 
     // MARK: - Properties
 
@@ -52,10 +52,27 @@ final class LoginViewController: BaseViewController {
         return textField
     }()
 
-    private lazy var loginButton: BaseButton = {
+    private let repeatPasswordLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .labelText
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.text = "Повторите пароль"
+
+        return label
+    }()
+
+    private let repeatPasswordTextField: BaseTextField = {
+        let textField = BaseTextField()
+        textField.placeholder = "Пароль"
+        textField.isSecureTextEntry = true
+
+        return textField
+    }()
+
+    private lazy var registerButton: BaseButton = {
         let button = BaseButton()
-        button.setTitle("Войти", for: .normal)
-        button.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
+        button.setTitle("Регистрация", for: .normal)
+        button.addTarget(self, action: #selector(didTapRegister), for: .touchUpInside)
 
         return button
     }()
@@ -70,7 +87,7 @@ final class LoginViewController: BaseViewController {
 
     // MARK: - Dependencies
 
-    var presenter: LoginPresenterProtocol!
+    var presenter: RegistrationPresenterProtocol!
 
     // MARK: - Life cycle
 
@@ -82,18 +99,22 @@ final class LoginViewController: BaseViewController {
     // MARK: - Private methods
 
     @objc
-    private func didTapLogin() {
+    private func didTapRegister() {
         guard let login = loginTextField.text, let password = passwordTextField.text, !login.isEmpty, !password.isEmpty else {
-            showAlert()
+            showAlert(message: "Введите корректний логин и пароль")
             return
         }
-        presenter.didTapLogin(login: login, password: password)
+        guard passwordTextField.text == repeatPasswordTextField.text else {
+            showAlert(message: "Пароли не совпадают")
+            return
+        }
+        presenter.didTapRegister(login: login, password: password)
     }
 
-    private func showAlert() {
+    private func showAlert(message: String) {
         let alertController = UIAlertController(
             title: "Ошибка входа",
-            message: "Введите корректный логин и пароль",
+            message: message,
             preferredStyle: .alert
         )
         let closeAction = UIAlertAction(title: "Закрыть", style: .default, handler: nil)
@@ -104,26 +125,29 @@ final class LoginViewController: BaseViewController {
 
 // MARK: - LoginViewProtocol
 
-extension LoginViewController: LoginViewProtocol {
+extension RegistrationViewController: RegistrationViewProtocol {
     func didReceiveData() {
     }
 }
 
 // MARK: - SetupSubviews
 
-extension LoginViewController {
+extension RegistrationViewController {
     override func embedSubviews() {
         verticalStack.addArrangedSubviews(
             loginLabel,
             loginTextField,
             passwordLabel,
             passwordTextField,
-            loginButton
+            repeatPasswordLabel,
+            repeatPasswordTextField,
+            registerButton
         )
 
         view.addSubview(verticalStack)
         verticalStack.setCustomSpacing(4, after: loginLabel)
         verticalStack.setCustomSpacing(4, after: passwordLabel)
+        verticalStack.setCustomSpacing(4, after: repeatPasswordLabel)
     }
 
     override func setupConstraints() {
@@ -134,4 +158,3 @@ extension LoginViewController {
         }
     }
 }
-

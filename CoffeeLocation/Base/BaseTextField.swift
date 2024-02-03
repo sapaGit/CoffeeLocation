@@ -61,6 +61,7 @@ extension BaseTextField {
         layer.borderColor = UIColor.labelText.cgColor
         layer.borderWidth = 2
         font = .systemFont(ofSize: Constants.fontSize)
+        autocapitalizationType = .none
     }
 }
 
