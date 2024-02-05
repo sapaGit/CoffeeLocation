@@ -54,14 +54,14 @@ extension NavigationManager: NavigationProtocol {
     /// Navigates to the specified route.
     ///
     /// - Parameter route: The route to navigate to.
-    ///     - If the route is  `.login`, sets the LoginViewController as the root.
+    ///     - If the route is  `.login`, sets the RegistrartionViewController as the root.
     ///     - If the route is `.restaurants`, sets the RestaurantsViewController as the root.
     func navigate(_ route: Route) {
         switch route {
         case .login:
             setRootController(createAuthModule())
         case .restaurants:
-            setRootController(createRestaurantViewController())
+            setRootController(createRestaurantModule())
         }
     }
 }
@@ -83,8 +83,9 @@ private extension NavigationManager {
         return navigationController
     }
 
-    func createRestaurantViewController() -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: RestaurantsViewController())
+    func createRestaurantModule() -> UINavigationController {
+        let restaurantsModule = RestaurantsModuleBuilder.build()
+        let navigationController = UINavigationController(rootViewController: restaurantsModule)
         return navigationController
     }
 }
