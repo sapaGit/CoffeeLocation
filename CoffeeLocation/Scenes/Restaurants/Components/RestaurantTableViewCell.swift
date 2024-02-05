@@ -46,9 +46,9 @@ final class RestaurantsTableViewCell: BaseTableViewCell {
 // MARK: - Internal methods
 extension RestaurantsTableViewCell {
 
-    func configure(model: RestaurantsModel) {
+    func configure(model: RestaurantsModel, distanceDescription: String) {
         nameLabel.text = model.name
-        descriptionLabel.text = model.point.latitude
+        descriptionLabel.text = "\(distanceDescription) от вас"
     }
 }
 

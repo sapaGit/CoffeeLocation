@@ -44,7 +44,7 @@ extension NavigationManager: NavigationProtocol {
     ///   - window: The main window to be set for the app.
     func setWindow(_ window: UIWindow?) {
         self.window = window
-        guard !KeychainManager.shared.isAuthorized else {
+        guard KeychainManager.shared.isAuthorized else {
             navigate(.login)
             return
         }
@@ -54,7 +54,7 @@ extension NavigationManager: NavigationProtocol {
     /// Navigates to the specified route.
     ///
     /// - Parameter route: The route to navigate to.
-    ///     - If the route is  `.login`, sets the LoginViewController as the root.
+    ///     - If the route is  `.login`, sets the RegistrartionViewController as the root.
     ///     - If the route is `.restaurants`, sets the RestaurantsViewController as the root.
     func navigate(_ route: Route) {
         switch route {

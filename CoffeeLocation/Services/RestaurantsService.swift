@@ -34,7 +34,7 @@ extension RestaurantsService: RestaurantsServiceProtocol {
         let headers: HTTPHeaders?  = ["Authorization": "Bearer \(token)"]
         let request: RequestProtocol = RestaurantsRequest(headers: headers)
 
-        netwokManager.makeRequest(request: request, error: .restaurants, completion: completion)
+        netwokManager.makeRequest(request: request, error: .fetch, completion: completion)
     }
     
     /// Regiser user using the provided credentials.
@@ -42,6 +42,6 @@ extension RestaurantsService: RestaurantsServiceProtocol {
 
         let request: RequestProtocol = RestaurantsRequest()
 
-        netwokManager.makeRequest(request: request, error: .restaurants, completion: completion)
+        netwokManager.makeRequest(request: request, error: .fetch, completion: completion)
     }
 }

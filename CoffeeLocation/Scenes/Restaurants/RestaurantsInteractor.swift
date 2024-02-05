@@ -10,9 +10,7 @@ protocol RestaurantsInteractorProtocol {
 
     func fetchRestaurants()
 
-    func login(login: String, password: String)
-
-    func getUserLocation()
+    func getDistansesFromRestaurants(restaurants: [RestaurantsModel])
 }
 
 final class RestaurantsInteractor: NSObject {
@@ -32,10 +30,14 @@ final class RestaurantsInteractor: NSObject {
 // MARK: - RestaurantsInteractorProtocol
 
 extension RestaurantsInteractor: RestaurantsInteractorProtocol {
+
     func fetchRestaurants() {
 
         // move token to keychain
-        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBdXRoZW50aWNhdGlvbiIsImlzcyI6ImNvZmZlZSBiYWNrZW5kIiwiaWQiOjk5MiwiZXhwIjoxNzA3MTM4NTQ1fQ.NPLdNs7YDzpzEKV7H5zHGBFvN_YPPZK2wCy-8ioTmJ8"
+        guard let token = KeychainManager.shared.accessToken else {
+            presenter?.error(typeError: .login)
+            return
+        }
         networkService.fetchRestaurants(token: token) { [weak self] result in
 
             switch result {
@@ -43,49 +45,33 @@ extension RestaurantsInteractor: RestaurantsInteractorProtocol {
                 self?.presenter?.restaurants = models
                 self?.presenter?.didEndFetchRestaurants()
 
-            case .error(let error):
-                print(error.localizedDescription)
+            case .error:
+                self?.presenter?.error(typeError: .fetch)
             }
         }
     }
 
-    func getUserLocation() {
-        let locationManager = CLLocationManager()
-        DispatchQueue.global().async {
-                if CLLocationManager.locationServicesEnabled() {
-                    // Perform UI-related tasks on the main thread
-                    DispatchQueue.main.async {
-                        locationManager.delegate = self
-                        locationManager.desiredAccuracy = .leastNonzeroMagnitude
-                        locationManager.requestWhenInUseAuthorization()
-                        // You can also call locationManager.startUpdatingLocation() here if needed
+    func getDistansesFromRestaurants(restaurants: [RestaurantsModel]) {
+        let locationManager = LocationManager.shared
+        locationManager.getUserLocation { [weak self] location in
+            guard let location = location else {
+                self?.presenter?.error(typeError: .location)
+                return
+            }
+            DispatchQueue.main.async {
+                for restaurant in restaurants {
+                    guard let latitude = Double(restaurant.point.latitude),
+                          let longitude = Double(restaurant.point.longitude) else {
+                        return
                     }
-                } else {
-                    // Handle the case where location services are not enabled
+                    let distance = location.distance(from: CLLocation(
+                        latitude: latitude,
+                        longitude: longitude)
+                    )
+                    self?.presenter?.distances.append(Int(distance))
                 }
-            }
-    }
-
-
-    func login(login: String, password: String) {
-        networkService.register(login: login, password: password) { [weak self] result in
-            switch result {
-            case .success(let loginModel):
-                print(loginModel.id)
-//                self?.keychainManager.setTokens(loginModel)
-                self?.presenter?.didLogin()
-            case .error(let error):
-                print(error.localizedDescription)
+                self?.presenter?.didEndFetchLocation()
             }
         }
-    }
-}
-
-extension RestaurantsInteractor: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else {
-            return
-        }
-        print(location)
     }
 }

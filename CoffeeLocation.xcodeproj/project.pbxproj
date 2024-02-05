@@ -16,6 +16,8 @@
 		A045FCCD2B6E86B400BA3518 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A045FCCC2B6E86B400BA3518 /* RestaurantTableViewCell.swift */; };
 		A045FCD02B6E871B00BA3518 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A045FCCF2B6E871B00BA3518 /* BaseTableViewCell.swift */; };
 		A045FCD32B6EA6D100BA3518 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A045FCD22B6EA6D100BA3518 /* LocationManager.swift */; };
+		A045FCF72B7144B700BA3518 /* Int+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A045FCF62B7144B700BA3518 /* Int+extension.swift */; };
+		A045FCF92B714A5400BA3518 /* TypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A045FCF82B714A5400BA3518 /* TypeError.swift */; };
 		A04CCE8E2B6D213F006FC749 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCE8D2B6D213F006FC749 /* LoginPresenter.swift */; };
 		A04CCE902B6D2150006FC749 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCE8F2B6D2150006FC749 /* LoginInteractor.swift */; };
 		A04CCE922B6D215F006FC749 /* LoginModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04CCE912B6D215F006FC749 /* LoginModuleBuilder.swift */; };
@@ -68,6 +70,8 @@
 		A045FCCC2B6E86B400BA3518 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		A045FCCF2B6E871B00BA3518 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		A045FCD22B6EA6D100BA3518 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		A045FCF62B7144B700BA3518 /* Int+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+extension.swift"; sourceTree = "<group>"; };
+		A045FCF82B714A5400BA3518 /* TypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeError.swift; sourceTree = "<group>"; };
 		A04CCE8D2B6D213F006FC749 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		A04CCE8F2B6D2150006FC749 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		A04CCE912B6D215F006FC749 /* LoginModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModuleBuilder.swift; sourceTree = "<group>"; };
@@ -283,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				A0D8D3DB2B6CDB390018C98F /* UIView+extension.swift */,
+				A045FCF62B7144B700BA3518 /* Int+extension.swift */,
 				A0D8D3DD2B6CDB5A0018C98F /* UIStackView+extension.swift */,
 				A0D8D3E52B6CDBDD0018C98F /* UITableViewCell+extension.swift */,
 				A0D8D3E32B6CDBBA0018C98F /* Encodable+extension.swift */,
@@ -295,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				A0D8D3E02B6CDB8D0018C98F /* TypeDescribable.swift */,
+				A045FCF82B714A5400BA3518 /* TypeError.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -456,6 +462,7 @@
 				A04CCEA92B6D4ABE006FC749 /* RegistrationInteractor.swift in Sources */,
 				A04CCEAD2B6D4AD9006FC749 /* RegistrationModuleBuilder.swift in Sources */,
 				A0D8D3B32B6CD88E0018C98F /* LoginViewController.swift in Sources */,
+				A045FCF72B7144B700BA3518 /* Int+extension.swift in Sources */,
 				A0D8D3FC2B6CDE790018C98F /* RestaurantsViewController.swift in Sources */,
 				A04CCE922B6D215F006FC749 /* LoginModuleBuilder.swift in Sources */,
 				A04CCE942B6D2168006FC749 /* LoginRouter.swift in Sources */,
@@ -475,6 +482,7 @@
 				A0D8D4022B6CDFD20018C98F /* KeychainManager.swift in Sources */,
 				A04CCEA72B6D4AB0006FC749 /* RegistrationPresenter.swift in Sources */,
 				A04CCE982B6D2277006FC749 /* BasePresenterProtocol.swift in Sources */,
+				A045FCF92B714A5400BA3518 /* TypeError.swift in Sources */,
 				A045FCD02B6E871B00BA3518 /* BaseTableViewCell.swift in Sources */,
 				A0D8D3F42B6CDCE20018C98F /* NetworkError.swift in Sources */,
 				A045FCC72B6E71A300BA3518 /* RestaurantsModuleBuilder.swift in Sources */,

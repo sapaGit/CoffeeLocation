@@ -33,8 +33,7 @@ extension LoginInteractor: LoginInteractorProtocol {
         networkService.login(login: login, password: password) { [weak self] result in
             switch result {
             case .success(let loginModel):
-                print(loginModel.token)
-//                self?.keychainManager.setTokens(loginModel)
+                self?.keychainManager.setTokens(loginModel)
                 self?.presenter?.didLogin()
             case .error(let error):
                 print(error.localizedDescription)

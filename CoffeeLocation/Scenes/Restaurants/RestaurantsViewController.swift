@@ -117,7 +117,8 @@ extension RestaurantsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: RestaurantsTableViewCell = tableView.dequeueReusableCell(for: indexPath)
         let currentModel = presenter.restaurants[indexPath.row]
-        cell.configure(model: currentModel)
+        let currentDescription = presenter.distancesString[indexPath.row]
+        cell.configure(model: currentModel, distanceDescription: currentDescription)
 
         return cell
     }

@@ -10,6 +10,8 @@ protocol RestaurantsPresenterProtocol: BasePresenterProtocol {
 
     var distances: [Int] { get set }
 
+    var distancesString: [String] { get set }
+
     func didTapShowLocation()
 
     func didEndFetchRestaurants()
@@ -17,6 +19,8 @@ protocol RestaurantsPresenterProtocol: BasePresenterProtocol {
     func didEndFetchLocation()
 
     func didLogin()
+
+    func error(typeError: TypeError)
 }
 
 final class RestaurantsPresenter {
@@ -26,6 +30,8 @@ final class RestaurantsPresenter {
     var restaurants: [RestaurantsModel] = []
 
     var distances: [Int] = []
+
+    var distancesString: [String] = []
 
     // MARK: - Dependencies
 
@@ -45,18 +51,24 @@ final class RestaurantsPresenter {
 // MARK: - Presenter Protocol
 
 extension RestaurantsPresenter: RestaurantsPresenterProtocol {
-    func didEndFetchLocation() {
-       
-    }
-    
-    func didEndFetchRestaurants() {
-        view?.didReceiveData()
-        interactor.getUserLocation()
-    }
-    
-
+   
     func viewDidLoad() {
         interactor.fetchRestaurants()
+        view?.didReceiveData()
+    }
+
+    func didEndFetchRestaurants() {
+        interactor.getDistansesFromRestaurants(restaurants: restaurants)
+    }
+
+    func didEndFetchLocation() {
+        for distance in distances {
+            distancesString.append(distance.formatDistance())
+        }
+        view?.didReceiveData()
+    }
+    func error(typeError: TypeError) {
+        view?.showAlert(title: "Ошибка", message: typeError.rawValue)
     }
 
     func didTapShowLocation() {
