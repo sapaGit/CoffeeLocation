@@ -44,7 +44,7 @@ extension NavigationManager: NavigationProtocol {
     ///   - window: The main window to be set for the app.
     func setWindow(_ window: UIWindow?) {
         self.window = window
-        guard KeychainManager.shared.isAuthorized else {
+        guard !KeychainManager.shared.isAuthorized else {
             navigate(.login)
             return
         }
@@ -61,7 +61,7 @@ extension NavigationManager: NavigationProtocol {
         case .login:
             setRootController(createAuthModule())
         case .restaurants:
-            setRootController(createRestaurantViewController())
+            setRootController(createRestaurantModule())
         }
     }
 }
@@ -83,8 +83,9 @@ private extension NavigationManager {
         return navigationController
     }
 
-    func createRestaurantViewController() -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: RestaurantsViewController())
+    func createRestaurantModule() -> UINavigationController {
+        let restaurantsModule = RestaurantsModuleBuilder.build()
+        let navigationController = UINavigationController(rootViewController: restaurantsModule)
         return navigationController
     }
 }

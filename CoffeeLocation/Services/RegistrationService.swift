@@ -29,7 +29,7 @@ final class RegistrationService {
 extension RegistrationService: RegistrationServiceProtocol {
     /// Regiser user using the provided credentials.
     func register(login: String, password: String, completion: @escaping (AFResult<RegistrationModel>) -> Void) {
-
+        
         let parameters = RegistrationEncodable(login: login, password: password).toJSON()
         let request: RequestProtocol = RegistrationRequest(params: parameters)
 

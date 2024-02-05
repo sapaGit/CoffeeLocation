@@ -14,7 +14,7 @@ protocol RequestProtocol {
     var method: HTTPMethod { get }
     var body: Data? { get }
     var params: [String: Any]? { get }
-    var headers: HTTPHeaders { get }
+    var headers: HTTPHeaders? { get }
     var encoding: ParameterEncoding { get }
     var baseURL: String { get }
 }
@@ -22,7 +22,7 @@ protocol RequestProtocol {
 extension RequestProtocol {
     var body: Data? { nil }
     var params: [String: Any]? { nil }
-    var headers: HTTPHeaders { ["Content-Type" : "application/json"] }
+    var headers: HTTPHeaders? { nil }
     var encoding: ParameterEncoding { JSONEncoding.default }
     var baseURL: String { "http://147.78.66.203:3210/" }
 

@@ -28,6 +28,6 @@ enum TypeError: String, Error {
     case invalidURL = "Incorrect URL"
     case login = "Authorisation Error"
     case register = "Registration error"
-    case profile = "Failed to get user information"
+    case restaurants = "Failed to get restaurants information"
     case logout = "Failed to sign out of account"
 }
