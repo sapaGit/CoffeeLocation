@@ -6,20 +6,20 @@
 import Foundation
 
 protocol RestaurantsRouterProtocol {
-    /// Navigate to the authentication screen.
-    func routToRestaurants()
+    /// Navigate to the Menu screen.
+    func routToMenu(restaurantId: Int)
 }
 
 final class RestaurantsRouter {
 
     // MARK: - Dependencies
 
-    private var navigationManager: NavigationProtocol
+    private weak var view: RestaurantsViewProtocol?
 
     // MARK: - init
 
-    init(navigationManager: NavigationProtocol) {
-        self.navigationManager = navigationManager
+    init(view: RestaurantsViewProtocol) {
+        self.view = view
     }
 
 }
@@ -28,8 +28,10 @@ final class RestaurantsRouter {
 
 extension RestaurantsRouter: RestaurantsRouterProtocol {
 
-    func routToRestaurants() {
-        navigationManager.navigate(.restaurants)
+    func routToMenu(restaurantId: Int) {
+        view?.pushViewController(
+            MenuModuleBuilder.build(restaurantId: restaurantId),
+            animated: true
+        )
     }
-
 }

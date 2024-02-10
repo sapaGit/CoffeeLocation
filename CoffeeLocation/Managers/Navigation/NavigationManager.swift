@@ -44,11 +44,14 @@ extension NavigationManager: NavigationProtocol {
     ///   - window: The main window to be set for the app.
     func setWindow(_ window: UIWindow?) {
         self.window = window
-        guard KeychainManager.shared.isAuthorized else {
-            navigate(.login)
-            return
-        }
-        navigate(.restaurants)
+//        guard !KeychainManager.shared.isAuthorized else {
+//            navigate(.login)
+//            return
+//        }
+//        navigate(.restaurants)
+
+        setRootController(LoginModuleBuilder.build())
+//        setRootController(RestaurantsModuleBuilder.build())
     }
 
     /// Navigates to the specified route.

@@ -91,12 +91,12 @@ extension RestaurantsViewController {
     override func setupConstraints() {
         showLocationButton.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
         }
 
         restaurantsTableView.snp.makeConstraints {
             $0.leading.trailing.top.equalToSuperview().inset(7)
-            $0.bottom.equalTo(showLocationButton.snp.top).inset(7)
+            $0.bottom.equalTo(showLocationButton.snp.top).inset(-10)
         }
     }
 }
@@ -104,6 +104,10 @@ extension RestaurantsViewController {
 // MARK: - UITableViewDelegate
 
 extension RestaurantsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let restaurantId = presenter.restaurants[indexPath.row].id
+        presenter.didSelectRestaurant(restaurantId: restaurantId)
+    }
 
 }
 
