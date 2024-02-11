@@ -35,8 +35,8 @@ extension LoginInteractor: LoginInteractorProtocol {
             case .success(let loginModel):
                 self?.keychainManager.setTokens(loginModel)
                 self?.presenter?.didLogin()
-            case .error(let error):
-                print(error.localizedDescription)
+            case .error:
+                self?.presenter?.error(typeError: .login)
             }
         }
     }

@@ -15,11 +15,10 @@ private enum Constants {
 }
 
 protocol LoginViewProtocol: AnyObject {
-    /// Notifies that new data has been received.
-    func didReceiveData()
-
     /// Navigates to ViewController
     func pushViewController(_ viewController: UIViewController, animated: Bool)
+
+    func showAlert(message: String)
 }
 
 final class LoginViewController: BaseViewController {
@@ -91,28 +90,26 @@ final class LoginViewController: BaseViewController {
     @objc
     private func didTapLogin() {
         guard let login = loginTextField.text, let password = passwordTextField.text, !login.isEmpty, !password.isEmpty else {
-            showAlert()
+            showAlert(message: String.Login.insertCorrectLogin)
             return
         }
         presenter.didTapLogin(login: login, password: password)
-    }
-
-    private func showAlert() {
-        let alertController = UIAlertController(
-            title: String.Login.loginError,
-            message: String.Login.insertCorrectLogin,
-            preferredStyle: .alert
-        )
-        let closeAction = UIAlertAction(title: String.Login.closeTitle, style: .default, handler: nil)
-        alertController.addAction(closeAction)
-        self.present(alertController, animated: true, completion: nil)
     }
 }
 
 // MARK: - LoginViewProtocol
 
 extension LoginViewController: LoginViewProtocol {
-    func didReceiveData() {
+
+    func showAlert(message: String) {
+        let alertController = UIAlertController(
+            title: String.Login.loginError,
+            message: message,
+            preferredStyle: .alert
+        )
+        let closeAction = UIAlertAction(title: String.Login.closeTitle, style: .default, handler: nil)
+        alertController.addAction(closeAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 

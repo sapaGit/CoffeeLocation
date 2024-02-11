@@ -14,11 +14,10 @@ private enum Constants {
 }
 
 protocol RegistrationViewProtocol: AnyObject {
-    /// Notifies that new data has been received.
-    func didReceiveData()
-
     /// Navigates to ViewController
     func pushViewController(_ viewController: UIViewController, animated: Bool)
+
+    func showAlert(message: String)
 }
 
 final class RegistrationViewController: BaseViewController {
@@ -116,8 +115,12 @@ final class RegistrationViewController: BaseViewController {
         }
         presenter.didTapRegister(login: login, password: password)
     }
+}
 
-    private func showAlert(message: String) {
+// MARK: - LoginViewProtocol
+
+extension RegistrationViewController: RegistrationViewProtocol {
+    func showAlert(message: String) {
         let alertController = UIAlertController(
             title: String.Registration.loginError,
             message: message,
@@ -126,13 +129,6 @@ final class RegistrationViewController: BaseViewController {
         let closeAction = UIAlertAction(title: String.Registration.closeTitle, style: .default, handler: nil)
         alertController.addAction(closeAction)
         self.present(alertController, animated: true, completion: nil)
-    }
-}
-
-// MARK: - LoginViewProtocol
-
-extension RegistrationViewController: RegistrationViewProtocol {
-    func didReceiveData() {
     }
 }
 

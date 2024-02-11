@@ -10,6 +10,8 @@ protocol RegistrationPresenterProtocol: BasePresenterProtocol {
     func didTapRegister(login: String, password: String)
 
     func didRegister()
+
+    func error(typeError: TypeError)
 }
 
 final class RegistrationPresenter {
@@ -38,6 +40,10 @@ extension RegistrationPresenter: RegistrationPresenterProtocol {
 
     func didRegister() {
         router.routToLogin()
+    }
+
+    func error(typeError: TypeError) {
+        view?.showAlert(message: typeError.rawValue)
     }
 }
 

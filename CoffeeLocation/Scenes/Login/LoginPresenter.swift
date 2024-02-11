@@ -10,6 +10,8 @@ protocol LoginPresenterProtocol: BasePresenterProtocol {
     func didTapLogin(login: String, password: String)
 
     func didLogin()
+
+    func error(typeError: TypeError)
 }
 
 final class LoginPresenter {
@@ -38,5 +40,9 @@ extension LoginPresenter: LoginPresenterProtocol {
 
     func didLogin() {
         router.routToRestaurants()
+    }
+
+    func error(typeError: TypeError) {
+        view?.showAlert(message: typeError.rawValue)
     }
 }

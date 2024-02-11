@@ -43,7 +43,7 @@ extension NavigationManager: NavigationProtocol {
     ///   - window: The main window to be set for the app.
     func setWindow(_ window: UIWindow?) {
         self.window = window
-        guard KeychainManager.shared.isAuthorized else {
+        guard !KeychainManager.shared.isAuthorized else {
             navigate(.login)
             return
         }
