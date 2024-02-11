@@ -69,8 +69,15 @@ extension RestaurantsPresenter: RestaurantsPresenterProtocol {
         }
         view?.didReceiveData()
     }
+    
     func error(typeError: TypeError) {
         view?.showAlert(title: String.Restaurants.error, message: typeError.rawValue)
+        if typeError == .location {
+            for _ in 0 ... restaurants.count {
+                distancesString.append(String.Restaurants.unknownDistance)
+            }
+            view?.didReceiveData()
+        }
     }
     func sessionExpired() {
         router.routToLogin()

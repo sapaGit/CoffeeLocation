@@ -95,7 +95,6 @@ extension RestaurantsViewController {
     }
 
     override func embedSubviews() {
-
         view.addSubviews(restaurantsTableView, showLocationButton)
     }
 
@@ -120,7 +119,6 @@ extension RestaurantsViewController: UITableViewDelegate {
         let restaurantId = presenter.restaurants[indexPath.row].id
         presenter.didSelectRestaurant(restaurantId: restaurantId)
     }
-
 }
 
 // MARK: - UITableViewDataSource

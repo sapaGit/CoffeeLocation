@@ -12,5 +12,6 @@ extension String {
         static let error = "Ошибка"
         static let mapTitle = "Показ карты"
         static let mapShowError = "Ошибка при отображении карты"
+        static let unknownDistance = "Неизвестная дистанция"
     }
 }
