@@ -16,9 +16,7 @@ private enum Constants {
 protocol MenuViewProtocol: AnyObject {
     /// Notifies that new data has been received.
     func didReceiveData()
-
     func showAlert(title: String, message: String)
-
     /// Navigates to ViewController
     func pushViewController(_ viewController: UIViewController, animated: Bool)
 }
@@ -55,7 +53,7 @@ final class MenuViewController: BaseViewController {
 
     private lazy var openPaymentButton: BaseButton = {
         let button = BaseButton()
-        button.setTitle("Перейти к оплате", for: .normal)
+        button.setTitle(String.Menu.paymentButtonTitle, for: .normal)
         button.addTarget(self, action: #selector(didTapOpenPayment), for: .touchUpInside)
 
         return button
@@ -92,7 +90,7 @@ extension MenuViewController: MenuViewProtocol {
             message: message,
             preferredStyle: .alert
         )
-        let closeAction = UIAlertAction(title: "Закрыть", style: .default, handler: nil)
+        let closeAction = UIAlertAction(title: String.Menu.closeTitle, style: .default, handler: nil)
         alertController.addAction(closeAction)
         self.present(alertController, animated: true, completion: nil)
     }
@@ -109,11 +107,10 @@ extension MenuViewController {
     override func setupSubviews() {
         super.setupSubviews()
 
-        title = "Меню"
+        title = String.Menu.title
     }
 
     override func embedSubviews() {
-
         view.addSubviews(menuCollectionView, openPaymentButton)
     }
 
@@ -135,7 +132,7 @@ extension MenuViewController {
 // MARK: - UICollectionViewDelegate
 
 extension MenuViewController: UICollectionViewDelegate {
-
+    // handle events
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

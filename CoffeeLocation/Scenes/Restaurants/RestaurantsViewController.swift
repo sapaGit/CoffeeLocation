@@ -38,7 +38,7 @@ final class RestaurantsViewController: BaseViewController {
 
     private lazy var showLocationButton: BaseButton = {
         let button = BaseButton()
-        button.setTitle("На карте", for: .normal)
+        button.setTitle(String.Restaurants.buttonTitle, for: .normal)
         button.addTarget(self, action: #selector(didTapShowLocation), for: .touchUpInside)
 
         return button
@@ -74,7 +74,7 @@ extension RestaurantsViewController: RestaurantsViewProtocol {
             message: message,
             preferredStyle: .alert
         )
-        let closeAction = UIAlertAction(title: "Закрыть", style: .default, handler: nil)
+        let closeAction = UIAlertAction(title: String.Restaurants.closeTitle, style: .default, handler: nil)
         alertController.addAction(closeAction)
         self.present(alertController, animated: true, completion: nil)
     }
@@ -91,7 +91,7 @@ extension RestaurantsViewController {
     override func setupSubviews() {
         super.setupSubviews()
 
-        title = "Ближайшие кофейни"
+        title = String.Restaurants.title
     }
 
     override func embedSubviews() {

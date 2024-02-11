@@ -17,7 +17,6 @@ private enum Constants {
 protocol OrderViewProtocol: AnyObject {
     /// Notifies that new data has been received.
     func didReceiveData()
-
     func showAlert(title: String, message: String)
 }
 
@@ -44,7 +43,7 @@ final class OrderViewController: BaseViewController {
         label.textAlignment = .center
         label.numberOfLines = .zero
         label.textColor = .labelText
-        label.text = "Время ожидания заказа 15 минут!\n Спасибо, что выбрали нас!"
+        label.text = String.Order.infoMessage
         label.font = .systemFont(ofSize: Constants.infoLabelFontSize, weight: .semibold)
 
         return label
@@ -52,7 +51,7 @@ final class OrderViewController: BaseViewController {
 
     private lazy var payButton: BaseButton = {
         let button = BaseButton()
-        button.setTitle("Оплатить", for: .normal)
+        button.setTitle(String.Order.pay, for: .normal)
         button.addTarget(self, action: #selector(didTapPayButton), for: .touchUpInside)
 
         return button
@@ -88,7 +87,7 @@ extension OrderViewController: OrderViewProtocol {
             message: message,
             preferredStyle: .alert
         )
-        let closeAction = UIAlertAction(title: "Закрыть", style: .default, handler: nil)
+        let closeAction = UIAlertAction(title: String.Order.closeTitle, style: .default, handler: nil)
         alertController.addAction(closeAction)
         self.present(alertController, animated: true, completion: nil)
     }
@@ -105,7 +104,7 @@ extension OrderViewController {
     override func setupSubviews() {
         super.setupSubviews()
 
-        title = "Ваш заказ"
+        title = String.Order.title
     }
 
     override func embedSubviews() {

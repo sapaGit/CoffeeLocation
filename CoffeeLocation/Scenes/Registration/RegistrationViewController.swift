@@ -3,9 +3,15 @@
 //  CoffeeLocation
 //
 
-
 import UIKit
 import SnapKit
+
+private enum Constants {
+    static let fontSize: CGFloat = 15.0
+    static let stackViewSpacing: CGFloat = 40.0
+    static let stackViewCustomSpacing: CGFloat = 4.0
+    static let stackViewInset: CGFloat = 20.0
+}
 
 protocol RegistrationViewProtocol: AnyObject {
     /// Notifies that new data has been received.
@@ -22,15 +28,15 @@ final class RegistrationViewController: BaseViewController {
     private let loginLabel: UILabel = {
         let label = UILabel()
         label.textColor = .labelText
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.text = "e-mail"
+        label.font = UIFont.systemFont(ofSize: Constants.fontSize)
+        label.text = String.Registration.email
 
         return label
     }()
 
     private let loginTextField: BaseTextField = {
         let textField = BaseTextField()
-        textField.placeholder = "Введите email"
+        textField.placeholder = String.Registration.insertEmail
 
         return textField
     }()
@@ -38,15 +44,15 @@ final class RegistrationViewController: BaseViewController {
     private let passwordLabel: UILabel = {
         let label = UILabel()
         label.textColor = .labelText
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.text = "Пароль"
+        label.font = UIFont.systemFont(ofSize: Constants.fontSize)
+        label.text = String.Registration.password
 
         return label
     }()
 
     private let passwordTextField: BaseTextField = {
         let textField = BaseTextField()
-        textField.placeholder = "Введите пароль"
+        textField.placeholder = String.Registration.insertPassword
         textField.isSecureTextEntry = true
 
         return textField
@@ -55,15 +61,15 @@ final class RegistrationViewController: BaseViewController {
     private let repeatPasswordLabel: UILabel = {
         let label = UILabel()
         label.textColor = .labelText
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.text = "Повторите пароль"
+        label.font = UIFont.systemFont(ofSize: Constants.fontSize)
+        label.text = String.Registration.repeatPassword
 
         return label
     }()
 
     private let repeatPasswordTextField: BaseTextField = {
         let textField = BaseTextField()
-        textField.placeholder = "Пароль"
+        textField.placeholder = String.Registration.password
         textField.isSecureTextEntry = true
 
         return textField
@@ -71,7 +77,7 @@ final class RegistrationViewController: BaseViewController {
 
     private lazy var registerButton: BaseButton = {
         let button = BaseButton()
-        button.setTitle("Регистрация", for: .normal)
+        button.setTitle(String.Registration.title, for: .normal)
         button.addTarget(self, action: #selector(didTapRegister), for: .touchUpInside)
 
         return button
@@ -80,7 +86,7 @@ final class RegistrationViewController: BaseViewController {
     private let verticalStack: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 40
+        stackView.spacing = Constants.stackViewSpacing
 
         return stackView
     }()
@@ -101,11 +107,11 @@ final class RegistrationViewController: BaseViewController {
     @objc
     private func didTapRegister() {
         guard let login = loginTextField.text, let password = passwordTextField.text, !login.isEmpty, !password.isEmpty else {
-            showAlert(message: "Введите корректний логин и пароль")
+            showAlert(message: String.Registration.insertCorrectLogin)
             return
         }
         guard passwordTextField.text == repeatPasswordTextField.text else {
-            showAlert(message: "Пароли не совпадают")
+            showAlert(message: String.Registration.passwordMissmatch)
             return
         }
         presenter.didTapRegister(login: login, password: password)
@@ -113,11 +119,11 @@ final class RegistrationViewController: BaseViewController {
 
     private func showAlert(message: String) {
         let alertController = UIAlertController(
-            title: "Ошибка входа",
+            title: String.Registration.loginError,
             message: message,
             preferredStyle: .alert
         )
-        let closeAction = UIAlertAction(title: "Закрыть", style: .default, handler: nil)
+        let closeAction = UIAlertAction(title: String.Registration.closeTitle, style: .default, handler: nil)
         alertController.addAction(closeAction)
         self.present(alertController, animated: true, completion: nil)
     }
@@ -137,7 +143,7 @@ extension RegistrationViewController {
     override func setupSubviews() {
         super.setupSubviews()
 
-        title = "Регистрация"
+        title = String.Registration.title
     }
 
     override func embedSubviews() {
@@ -152,15 +158,16 @@ extension RegistrationViewController {
         )
 
         view.addSubview(verticalStack)
-        verticalStack.setCustomSpacing(4, after: loginLabel)
-        verticalStack.setCustomSpacing(4, after: passwordLabel)
-        verticalStack.setCustomSpacing(4, after: repeatPasswordLabel)
+        
+        verticalStack.setCustomSpacing(Constants.stackViewCustomSpacing, after: loginLabel)
+        verticalStack.setCustomSpacing(Constants.stackViewCustomSpacing, after: passwordLabel)
+        verticalStack.setCustomSpacing(Constants.stackViewCustomSpacing, after: repeatPasswordLabel)
     }
 
     override func setupConstraints() {
 
         verticalStack.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(Constants.stackViewInset)
             $0.centerY.equalToSuperview()
         }
     }

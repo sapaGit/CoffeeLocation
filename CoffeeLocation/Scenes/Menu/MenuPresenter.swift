@@ -51,7 +51,7 @@ final class MenuPresenter {
 extension MenuPresenter: MenuPresenterProtocol {
 
     func error(typeError: TypeError) {
-        view?.showAlert(title: "Ошибка", message: typeError.rawValue)
+        view?.showAlert(title: String.Menu.error, message: typeError.rawValue)
     }
 
     func viewDidLoad() {
@@ -62,8 +62,8 @@ extension MenuPresenter: MenuPresenterProtocol {
     func didTapOpenPayment() {
         guard !interactor.isOrderIsEmpty() else { 
             view?.showAlert(
-                title: "Ошибка",
-                message: "Пожалуйста добавьте блюда в ваш заказ"
+                title: String.Menu.error,
+                message: String.Menu.addItemToOrderMessage
             )
             return
         }

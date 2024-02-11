@@ -7,6 +7,13 @@
 import UIKit
 import SnapKit
 
+private enum Constants {
+    static let fontSize: CGFloat = 15.0
+    static let stackViewSpacing: CGFloat = 40.0
+    static let stackViewCustomSpacing: CGFloat = 4.0
+    static let stackViewInset: CGFloat = 20.0
+}
+
 protocol LoginViewProtocol: AnyObject {
     /// Notifies that new data has been received.
     func didReceiveData()
@@ -22,15 +29,15 @@ final class LoginViewController: BaseViewController {
     private let loginLabel: UILabel = {
         let label = UILabel()
         label.textColor = .labelText
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.text = "e-mail"
+        label.font = UIFont.systemFont(ofSize: Constants.fontSize)
+        label.text = String.Login.email
 
         return label
     }()
 
     private let loginTextField: BaseTextField = {
         let textField = BaseTextField()
-        textField.placeholder = "Введите email"
+        textField.placeholder = String.Login.insertEmail
 
         return textField
     }()
@@ -38,15 +45,15 @@ final class LoginViewController: BaseViewController {
     private let passwordLabel: UILabel = {
         let label = UILabel()
         label.textColor = .labelText
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.text = "Пароль"
+        label.font = UIFont.systemFont(ofSize: Constants.fontSize)
+        label.text = String.Login.password
 
         return label
     }()
 
     private let passwordTextField: BaseTextField = {
         let textField = BaseTextField()
-        textField.placeholder = "Введите пароль"
+        textField.placeholder = String.Login.insertPassword
         textField.isSecureTextEntry = true
 
         return textField
@@ -54,7 +61,7 @@ final class LoginViewController: BaseViewController {
 
     private lazy var loginButton: BaseButton = {
         let button = BaseButton()
-        button.setTitle("Войти", for: .normal)
+        button.setTitle(String.Login.buttonTitle, for: .normal)
         button.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
 
         return button
@@ -63,7 +70,7 @@ final class LoginViewController: BaseViewController {
     private let verticalStack: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 40
+        stackView.spacing = Constants.stackViewSpacing
 
         return stackView
     }()
@@ -92,11 +99,11 @@ final class LoginViewController: BaseViewController {
 
     private func showAlert() {
         let alertController = UIAlertController(
-            title: "Ошибка входа",
-            message: "Введите корректный логин и пароль",
+            title: String.Login.loginError,
+            message: String.Login.insertCorrectLogin,
             preferredStyle: .alert
         )
-        let closeAction = UIAlertAction(title: "Закрыть", style: .default, handler: nil)
+        let closeAction = UIAlertAction(title: String.Login.closeTitle, style: .default, handler: nil)
         alertController.addAction(closeAction)
         self.present(alertController, animated: true, completion: nil)
     }
@@ -116,7 +123,7 @@ extension LoginViewController {
     override func setupSubviews() {
         super.setupSubviews()
 
-        title = "Вход"
+        title = String.Login.title
     }
 
     override func embedSubviews() {
@@ -129,14 +136,14 @@ extension LoginViewController {
         )
 
         view.addSubview(verticalStack)
-        verticalStack.setCustomSpacing(4, after: loginLabel)
-        verticalStack.setCustomSpacing(4, after: passwordLabel)
+        verticalStack.setCustomSpacing(Constants.stackViewCustomSpacing, after: loginLabel)
+        verticalStack.setCustomSpacing(Constants.stackViewCustomSpacing, after: passwordLabel)
     }
 
     override func setupConstraints() {
 
         verticalStack.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(Constants.stackViewInset)
             $0.centerY.equalToSuperview()
         }
     }

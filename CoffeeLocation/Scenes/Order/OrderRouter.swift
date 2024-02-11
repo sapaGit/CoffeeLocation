@@ -24,7 +24,6 @@ final class OrderRouter {
         self.view = view
         self.navigationManager = navigarionManager
     }
-
 }
 
 // MARK: - OrderRouterProtocol
