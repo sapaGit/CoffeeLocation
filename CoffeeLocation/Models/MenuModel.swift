@@ -6,13 +6,6 @@
 import Foundation
 import Alamofire
 
-// MARK: - MenuEncodable
-
-struct MenuEncodable: Encodable {
-    let login: String
-    let password: String
-}
-
 // MARK: - MenuRequest
 
 struct MenuRequest: RequestProtocol {
