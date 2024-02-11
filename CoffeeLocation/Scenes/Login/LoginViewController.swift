@@ -112,6 +112,13 @@ extension LoginViewController: LoginViewProtocol {
 // MARK: - SetupSubviews
 
 extension LoginViewController {
+
+    override func setupSubviews() {
+        super.setupSubviews()
+
+        title = "Вход"
+    }
+
     override func embedSubviews() {
         verticalStack.addArrangedSubviews(
             loginLabel,

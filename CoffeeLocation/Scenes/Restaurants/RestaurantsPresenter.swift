@@ -18,7 +18,9 @@ protocol RestaurantsPresenterProtocol: BasePresenterProtocol {
 
     func didEndFetchLocation()
 
-    func didLogin()
+    func didSelectRestaurant(restaurantId: Int)
+
+    func sessionExpired()
 
     func error(typeError: TypeError)
 }
@@ -51,7 +53,7 @@ final class RestaurantsPresenter {
 // MARK: - Presenter Protocol
 
 extension RestaurantsPresenter: RestaurantsPresenterProtocol {
-   
+    
     func viewDidLoad() {
         interactor.fetchRestaurants()
         view?.didReceiveData()
@@ -70,13 +72,15 @@ extension RestaurantsPresenter: RestaurantsPresenterProtocol {
     func error(typeError: TypeError) {
         view?.showAlert(title: "Ошибка", message: typeError.rawValue)
     }
-
+    func sessionExpired() {
+        router.routToLogin()
+    }
     func didTapShowLocation() {
         view?.showAlert(title: "Показ карты", message: "Ошибка при отображении карты")
     }
 
-    func didLogin() {
-        router.routToRestaurants()
+    func didSelectRestaurant(restaurantId: Int) {
+        router.routToMenu(restaurantId: restaurantId)
     }
 }
 

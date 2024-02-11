@@ -33,8 +33,8 @@ extension RestaurantsInteractor: RestaurantsInteractorProtocol {
 
     func fetchRestaurants() {
 
-        // move token to keychain
         guard let token = KeychainManager.shared.accessToken else {
+            keychainManager.removeAllData()
             presenter?.error(typeError: .login)
             return
         }
@@ -46,7 +46,8 @@ extension RestaurantsInteractor: RestaurantsInteractorProtocol {
                 self?.presenter?.didEndFetchRestaurants()
 
             case .error:
-                self?.presenter?.error(typeError: .fetch)
+                self?.keychainManager.removeAllData()
+                self?.presenter?.sessionExpired()
             }
         }
     }
