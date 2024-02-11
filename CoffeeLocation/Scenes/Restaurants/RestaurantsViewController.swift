@@ -6,6 +6,11 @@
 import UIKit
 import SnapKit
 
+private enum Constants {
+    static let locationButtonInset: CGFloat = 20.0
+    static let tableViewInset: CGFloat = 7.0
+}
+
 protocol RestaurantsViewProtocol: AnyObject {
     /// Notifies that new data has been received.
     func didReceiveData()
@@ -33,7 +38,7 @@ final class RestaurantsViewController: BaseViewController {
 
     private lazy var showLocationButton: BaseButton = {
         let button = BaseButton()
-        button.setTitle("На карте", for: .normal)
+        button.setTitle(String.Restaurants.buttonTitle, for: .normal)
         button.addTarget(self, action: #selector(didTapShowLocation), for: .touchUpInside)
 
         return button
@@ -57,11 +62,10 @@ final class RestaurantsViewController: BaseViewController {
     @objc
     private func didTapShowLocation() {
         presenter.didTapShowLocation()
-//        presenter.didTapLogin(login: login, password: password)
     }
 }
 
-// MARK: - LoginViewProtocol
+// MARK: - RestaurantsViewProtocol
 
 extension RestaurantsViewController: RestaurantsViewProtocol {
     func showAlert(title: String, message: String) {
@@ -70,7 +74,7 @@ extension RestaurantsViewController: RestaurantsViewProtocol {
             message: message,
             preferredStyle: .alert
         )
-        let closeAction = UIAlertAction(title: "Закрыть", style: .default, handler: nil)
+        let closeAction = UIAlertAction(title: String.Restaurants.closeTitle, style: .default, handler: nil)
         alertController.addAction(closeAction)
         self.present(alertController, animated: true, completion: nil)
     }
@@ -87,7 +91,7 @@ extension RestaurantsViewController {
     override func setupSubviews() {
         super.setupSubviews()
 
-        title = "Ближайшие кофейни"
+        title = String.Restaurants.title
     }
 
     override func embedSubviews() {
@@ -97,13 +101,14 @@ extension RestaurantsViewController {
 
     override func setupConstraints() {
         showLocationButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
+            $0.leading.trailing.equalToSuperview().inset(Constants.locationButtonInset)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(Constants.locationButtonInset)
         }
 
         restaurantsTableView.snp.makeConstraints {
-            $0.leading.trailing.top.equalToSuperview().inset(7)
-            $0.bottom.equalTo(showLocationButton.snp.top).inset(-10)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(Constants.tableViewInset)
+            $0.leading.trailing.equalToSuperview().inset(Constants.tableViewInset)
+            $0.bottom.equalTo(showLocationButton.snp.top).inset(-Constants.tableViewInset)
         }
     }
 }

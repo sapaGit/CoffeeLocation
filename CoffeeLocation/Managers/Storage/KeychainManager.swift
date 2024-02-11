@@ -10,7 +10,7 @@ enum KeychainKey: String {
     case token = "token"
 }
 
-/// Manages storing and retrieving tokens in the keychain for user authentication.
+/// Manages storing and retrieving token in the keychain for user authentication.
 final class KeychainManager {
 
     // MARK: - Properties
@@ -31,7 +31,7 @@ final class KeychainManager {
         }
     }
 
-    /// Indicates whether the user is authorized based on the presence of a refresh token.
+    /// Indicates whether the user is authorized based on the presence of a token.
     var isAuthorized: Bool {
         accessToken != nil
     }
@@ -48,7 +48,7 @@ final class KeychainManager {
         accessToken = loginModel.token
     }
 
-    /// Removes both access and refresh tokens from the keychain.
+    /// Removes tokens from the keychain.
     func removeAllData() {
         [
             KeychainKey.token.rawValue,
@@ -97,7 +97,6 @@ private extension KeychainManager {
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key
         ]
-
         SecItemDelete(query as CFDictionary)
     }
 }

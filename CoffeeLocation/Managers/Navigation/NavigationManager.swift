@@ -15,7 +15,6 @@ protocol NavigationProtocol {
     ///
     /// - Parameters:
     ///   - window: The main window to be set for the app.
-    ///   - completionHandler: A closure that is called after the window is set.
     func setWindow(_ window: UIWindow?)
 
     /// Navigates to a specific route
@@ -75,7 +74,6 @@ private extension NavigationManager {
         window.rootViewController = controller
         window.makeKeyAndVisible()
     }
-
 
     func createAuthModule() -> UINavigationController {
         let registrationModule = RegistrationModuleBuilder.build()

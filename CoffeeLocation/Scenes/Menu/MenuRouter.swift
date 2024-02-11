@@ -6,9 +6,7 @@
 import Foundation
 
 protocol MenuRouterProtocol {
-    /// Navigate to the authentication screen.
     func routToPayment(order: [Order])
-
     func routToLogin()
 }
 
@@ -17,7 +15,6 @@ final class MenuRouter {
     // MARK: - Dependencies
 
     private weak var view: MenuViewProtocol?
-
     private let navigationManager: NavigationProtocol
 
     // MARK: - init
@@ -26,7 +23,6 @@ final class MenuRouter {
         self.view = view
         self.navigationManager = navigationManager
     }
-
 }
 
 // MARK: - MenuRouterProtocol
@@ -35,8 +31,6 @@ extension MenuRouter: MenuRouterProtocol {
     func routToLogin() {
         navigationManager.navigate(.login)
     }
-    
-
     func routToPayment(order: [Order]) {
         view?.pushViewController(
             OrderModuleBuilder.build(order: order),

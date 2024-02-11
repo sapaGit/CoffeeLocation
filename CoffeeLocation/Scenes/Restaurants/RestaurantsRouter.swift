@@ -27,7 +27,6 @@ final class RestaurantsRouter {
         self.view = view
         self.navigationManager = navigarionManager
     }
-
 }
 
 // MARK: - RestaurantsRouterProtocol

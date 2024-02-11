@@ -10,9 +10,7 @@ protocol OrderPresenterProtocol: BasePresenterProtocol {
     var order: [Order] { get set }
 
     func didTapPayButton()
-
     func changeOrder(id: Int, amount: Int)
-
     func error(typeError: TypeError)
 }
 
@@ -50,15 +48,14 @@ extension OrderPresenter: OrderPresenterProtocol {
     }
 
     func error(typeError: TypeError) {
-        view?.showAlert(title: "Ошибка", message: typeError.rawValue)
+        view?.showAlert(title: String.Order.error, message: typeError.rawValue)
     }
 
     func changeOrder(id: Int, amount: Int) {
         order[id].amount = amount
-        print(order)
     }
 
     func didTapPayButton() {
-        view?.showAlert(title: "Оплата", message: "Пожалуйста произведите оплату заказа")
+        view?.showAlert(title: String.Order.payment, message: String.Order.paymentMessage)
     }
 }

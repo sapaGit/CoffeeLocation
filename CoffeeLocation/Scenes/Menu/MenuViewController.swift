@@ -6,12 +6,17 @@
 import UIKit
 import SnapKit
 
+private enum Constants {
+    static let layoutInterSpacing: CGFloat = 10.0
+    static let itemHeightMultiplier: CGFloat = 1.3
+    static let paymentButtonInset: CGFloat = 20.0
+    static let collectionViewInset: CGFloat = 7
+}
+
 protocol MenuViewProtocol: AnyObject {
     /// Notifies that new data has been received.
     func didReceiveData()
-
     func showAlert(title: String, message: String)
-
     /// Navigates to ViewController
     func pushViewController(_ viewController: UIViewController, animated: Bool)
 }
@@ -22,9 +27,13 @@ final class MenuViewController: BaseViewController {
 
     private let collectionViewLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 20
-        layout.minimumInteritemSpacing = 10
-        layout.sectionInset = .init(top: 10, left: 10, bottom: 10, right: 10)
+        layout.minimumLineSpacing = Constants.layoutInterSpacing*2
+        layout.minimumInteritemSpacing = Constants.layoutInterSpacing
+        layout.sectionInset = .init(
+            top: Constants.layoutInterSpacing,
+            left: Constants.layoutInterSpacing,
+            bottom: Constants.layoutInterSpacing,
+            right: Constants.layoutInterSpacing)
 
         return layout
     }()
@@ -34,14 +43,17 @@ final class MenuViewController: BaseViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
-        collectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: MenuCollectionViewCell.reuseIdentifier)
+        collectionView.register(
+            MenuCollectionViewCell.self,
+            forCellWithReuseIdentifier: MenuCollectionViewCell.reuseIdentifier
+        )
 
         return collectionView
     }()
 
     private lazy var openPaymentButton: BaseButton = {
         let button = BaseButton()
-        button.setTitle("Перейти к оплате", for: .normal)
+        button.setTitle(String.Menu.paymentButtonTitle, for: .normal)
         button.addTarget(self, action: #selector(didTapOpenPayment), for: .touchUpInside)
 
         return button
@@ -78,7 +90,7 @@ extension MenuViewController: MenuViewProtocol {
             message: message,
             preferredStyle: .alert
         )
-        let closeAction = UIAlertAction(title: "Закрыть", style: .default, handler: nil)
+        let closeAction = UIAlertAction(title: String.Menu.closeTitle, style: .default, handler: nil)
         alertController.addAction(closeAction)
         self.present(alertController, animated: true, completion: nil)
     }
@@ -95,23 +107,24 @@ extension MenuViewController {
     override func setupSubviews() {
         super.setupSubviews()
 
-        title = "Меню"
+        title = String.Menu.title
     }
 
     override func embedSubviews() {
-
         view.addSubviews(menuCollectionView, openPaymentButton)
     }
 
     override func setupConstraints() {
         openPaymentButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
+            $0.leading.trailing.equalToSuperview().inset(Constants.paymentButtonInset)
+            $0.bottom
+                .equalTo(view.safeAreaLayoutGuide.snp.bottom)
+                .inset(Constants.paymentButtonInset)
         }
 
         menuCollectionView.snp.makeConstraints {
-            $0.leading.trailing.top.equalToSuperview().inset(7)
-            $0.bottom.equalTo(openPaymentButton.snp.top).inset(-10)
+            $0.leading.trailing.top.equalToSuperview().inset(Constants.collectionViewInset)
+            $0.bottom.equalTo(openPaymentButton.snp.top).inset(-Constants.collectionViewInset)
         }
     }
 }
@@ -119,15 +132,16 @@ extension MenuViewController {
 // MARK: - UICollectionViewDelegate
 
 extension MenuViewController: UICollectionViewDelegate {
-
+    // handle events
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension MenuViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemWidth = collectionView.bounds.size.width/2-20
-        let itemHeight = 1.3 * itemWidth
+        let itemWidth = collectionView.bounds.size.width/2-Constants.layoutInterSpacing*2
+        let itemHeight = Constants.itemHeightMultiplier * itemWidth
+        
         return CGSize(width: itemWidth, height: itemHeight)
     }
 }

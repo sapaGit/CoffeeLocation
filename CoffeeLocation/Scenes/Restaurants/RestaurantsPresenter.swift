@@ -70,13 +70,13 @@ extension RestaurantsPresenter: RestaurantsPresenterProtocol {
         view?.didReceiveData()
     }
     func error(typeError: TypeError) {
-        view?.showAlert(title: "Ошибка", message: typeError.rawValue)
+        view?.showAlert(title: String.Restaurants.error, message: typeError.rawValue)
     }
     func sessionExpired() {
         router.routToLogin()
     }
     func didTapShowLocation() {
-        view?.showAlert(title: "Показ карты", message: "Ошибка при отображении карты")
+        view?.showAlert(title: String.Restaurants.mapTitle, message: String.Restaurants.mapShowError)
     }
 
     func didSelectRestaurant(restaurantId: Int) {
