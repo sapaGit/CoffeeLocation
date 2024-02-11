@@ -35,8 +35,8 @@ extension RegistrationInteractor: RegistrationInteractorProtocol {
             switch result {
             case .success:
                 self?.presenter?.didRegister()
-            case .error(let error):
-                print(error.localizedDescription)
+            case .error:
+                self?.presenter?.error(typeError: .register)
             }
         }
     }

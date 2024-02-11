@@ -8,7 +8,7 @@ extension String {
         static let title = "Регистрация"
         static let insertCorrectLogin = "Введите корректний логин и пароль"
         static let passwordMissmatch = "Пароли не совпадают"
-        static let loginError = "Ошибка входа"
+        static let loginError = "Ошибка регистрации"
         static let closeTitle = "Закрыть"
         static let password = "Пароль"
         static let insertPassword = "Введите пароль"
