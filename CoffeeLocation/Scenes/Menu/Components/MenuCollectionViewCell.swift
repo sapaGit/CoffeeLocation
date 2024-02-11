@@ -93,7 +93,7 @@ final class MenuCollectionViewCell: BaseCollectionViewCell {
 
 // MARK: - Private methods
 
-fileprivate extension MenuCollectionViewCell {
+private extension MenuCollectionViewCell {
 
     func setPhotoImage(url: String?, completionHandler: ((Bool) -> Void)? = nil) {
         guard let url, let url = URL(string: url) else {
@@ -113,7 +113,7 @@ fileprivate extension MenuCollectionViewCell {
     }
 }
 
-// MARK: - Layout
+// MARK: - Setup Subviews
 
 extension MenuCollectionViewCell {
 
