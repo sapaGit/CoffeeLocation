@@ -34,7 +34,6 @@ final class NetworkManager: NetworkManagerProtocol {
         AF.request(url, method: request.method, parameters: request.params, encoding: JSONEncoding.default, headers: request.headers)
             .validate()
             .responseDecodable(of: T.self) { response in
-                debugPrint(response)
                 switch response.result {
                 case .success(let answer):
                     completion(.success(answer))

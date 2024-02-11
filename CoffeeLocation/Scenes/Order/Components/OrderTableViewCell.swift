@@ -1,5 +1,5 @@
 //
-//  RestaurantTableViewCell.swift
+//  OrderTableViewCell.swift
 //  CoffeeLocation
 //
 
@@ -12,9 +12,11 @@ private enum Constants {
     static let backgroundInset: CGFloat = 3.0
 }
 
-final class RestaurantsTableViewCell: BaseTableViewCell {
+final class OrderTableViewCell: BaseTableViewCell {
 
     // MARK: - Properties
+
+    weak var stepperDelegate: StepperWasChangedDelegate?
 
     private let nameLabel: UILabel = {
         let label = UILabel()
@@ -25,13 +27,22 @@ final class RestaurantsTableViewCell: BaseTableViewCell {
         return label
     }()
 
-    private let descriptionLabel: UILabel = {
+    private let priceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 14, weight: .light)
         label.textColor = .descriptionText
 
         return label
+    }()
+
+    private lazy var stepperView: CustomStepper = {
+        let stepper = CustomStepper()
+
+        stepper.tintColor = .labelText
+        stepper.addTarget(self, action: #selector(stepperChangedValueAction), for: .valueChanged)
+
+        return stepper
     }()
 
     private lazy var backgroundViewCell: UIView = {
@@ -41,29 +52,42 @@ final class RestaurantsTableViewCell: BaseTableViewCell {
 
         return view
     }()
+
+    // MARK: - Actions
+
+    @objc
+    private func stepperChangedValueAction(sender: CustomStepper) {
+        stepperDelegate?.stepperWasChanged(tag: sender.tag, stepperValue: sender.currentValue)
+    }
 }
 
 // MARK: - Internal methods
+extension OrderTableViewCell {
 
-extension RestaurantsTableViewCell {
-
-    func configure(model: RestaurantsModel, distanceDescription: String) {
+    func configure(model: Order, index: Int) {
         nameLabel.text = model.name
-        descriptionLabel.text = "\(distanceDescription) от вас"
+        priceLabel.text = "\(model.price) руб"
+        stepperView.currentValue = model.amount
+        stepperView.tag = index
     }
 }
 
 // MARK: - Setup Subviews
 
-extension RestaurantsTableViewCell {
+extension OrderTableViewCell {
     override func setupSubviews() {
         super.setupSubviews()
 
         backgroundColor = .clear
+        contentView.isUserInteractionEnabled = false
     }
 
     override func embedSubviews() {
-        backgroundViewCell.addSubviews(nameLabel, descriptionLabel)
+        backgroundViewCell.addSubviews(
+            nameLabel,
+            priceLabel,
+            stepperView
+        )
         addSubviews(backgroundViewCell)
     }
 
@@ -71,12 +95,20 @@ extension RestaurantsTableViewCell {
         nameLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(Constants.padding)
             $0.leading.equalToSuperview().inset(8)
+            $0.trailing.equalTo(stepperView.snp.leading).inset(-10)
         }
 
-        descriptionLabel.snp.makeConstraints {
+        priceLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom).inset(-8)
             $0.leading.equalToSuperview().inset(8)
             $0.bottom.equalToSuperview().inset(Constants.padding)
+        }
+
+        stepperView.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(8)
+            $0.centerY.equalToSuperview()
+            $0.width.equalTo(80)
+            $0.height.equalTo(priceLabel.snp.height)
         }
 
         backgroundViewCell.snp.makeConstraints {
@@ -84,4 +116,3 @@ extension RestaurantsTableViewCell {
         }
     }
 }
-

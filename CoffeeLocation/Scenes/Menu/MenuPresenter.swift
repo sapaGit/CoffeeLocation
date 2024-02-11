@@ -14,6 +14,8 @@ protocol MenuPresenterProtocol: BasePresenterProtocol {
 
     func didTapOpenPayment()
 
+    func sessionExpired()
+
     func changeOrder(id: Int, amount: Int)
 
     func error(typeError: TypeError)
@@ -52,11 +54,10 @@ final class MenuPresenter {
 // MARK: - Presenter Protocol
 
 extension MenuPresenter: MenuPresenterProtocol {
-    
+
     func error(typeError: TypeError) {
         view?.showAlert(title: "Ошибка", message: typeError.rawValue)
     }
-    
 
     func viewDidLoad() {
         interactor.fetchMenu(id: restaurantId)
@@ -64,7 +65,7 @@ extension MenuPresenter: MenuPresenterProtocol {
     }
 
     func didTapOpenPayment() {
-        router.routToPayment()
+        router.routToPayment(order: orderArray)
     }
 
     func didEndFetchMenu() {
@@ -72,9 +73,12 @@ extension MenuPresenter: MenuPresenterProtocol {
         view?.didReceiveData()
     }
 
+    func sessionExpired() {
+        router.routToLogin()
+    }
+
     func changeOrder(id: Int, amount: Int) {
         orderArray[id].amount = amount
-        print(orderArray)
     }
 
     func createOrder() {

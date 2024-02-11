@@ -15,11 +15,11 @@ final class MenuModuleBuilder {
         let networkManager = NetworkManager.shared
         let networkService = MenuService(netwokManager: networkManager)
         let keychainManager = KeychainManager.shared
-        let navigationManager = NavigationManager.shared
         let interactor = MenuInteractor(
             networkService: networkService,
             keychainManager: keychainManager)
-        let router = MenuRouter(navigationManager: navigationManager)
+        let navigationManager = NavigationManager.shared
+        let router = MenuRouter(view: view, navigationManager: navigationManager)
         let presenter = MenuPresenter(
             view: view,
             interactor: interactor,

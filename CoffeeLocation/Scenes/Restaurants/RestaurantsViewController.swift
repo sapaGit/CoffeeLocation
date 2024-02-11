@@ -83,6 +83,13 @@ extension RestaurantsViewController: RestaurantsViewProtocol {
 // MARK: - SetupSubviews
 
 extension RestaurantsViewController {
+
+    override func setupSubviews() {
+        super.setupSubviews()
+
+        title = "Ближайшие кофейни"
+    }
+
     override func embedSubviews() {
 
         view.addSubviews(restaurantsTableView, showLocationButton)

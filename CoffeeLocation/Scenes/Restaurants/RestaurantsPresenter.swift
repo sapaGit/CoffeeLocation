@@ -20,6 +20,8 @@ protocol RestaurantsPresenterProtocol: BasePresenterProtocol {
 
     func didSelectRestaurant(restaurantId: Int)
 
+    func sessionExpired()
+
     func error(typeError: TypeError)
 }
 
@@ -70,7 +72,9 @@ extension RestaurantsPresenter: RestaurantsPresenterProtocol {
     func error(typeError: TypeError) {
         view?.showAlert(title: "Ошибка", message: typeError.rawValue)
     }
-
+    func sessionExpired() {
+        router.routToLogin()
+    }
     func didTapShowLocation() {
         view?.showAlert(title: "Показ карты", message: "Ошибка при отображении карты")
     }

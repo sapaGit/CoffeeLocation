@@ -7,18 +7,23 @@ import Foundation
 
 protocol MenuRouterProtocol {
     /// Navigate to the authentication screen.
-    func routToPayment()
+    func routToPayment(order: [Order])
+
+    func routToLogin()
 }
 
 final class MenuRouter {
 
     // MARK: - Dependencies
 
-    private var navigationManager: NavigationProtocol
+    private weak var view: MenuViewProtocol?
+
+    private let navigationManager: NavigationProtocol
 
     // MARK: - init
 
-    init(navigationManager: NavigationProtocol) {
+    init(view: MenuViewProtocol?, navigationManager: NavigationProtocol) {
+        self.view = view
         self.navigationManager = navigationManager
     }
 
@@ -27,7 +32,14 @@ final class MenuRouter {
 // MARK: - MenuRouterProtocol
 
 extension MenuRouter: MenuRouterProtocol {
+    func routToLogin() {
+        navigationManager.navigate(.login)
+    }
+    
 
-    func routToPayment() {
+    func routToPayment(order: [Order]) {
+        view?.pushViewController(
+            OrderModuleBuilder.build(order: order),
+            animated: true)
     }
 }

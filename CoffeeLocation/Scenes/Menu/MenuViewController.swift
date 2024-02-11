@@ -22,8 +22,7 @@ final class MenuViewController: BaseViewController {
 
     private let collectionViewLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = .init(width: 160, height: 210)
-        layout.minimumLineSpacing = 10
+        layout.minimumLineSpacing = 20
         layout.minimumInteritemSpacing = 10
         layout.sectionInset = .init(top: 10, left: 10, bottom: 10, right: 10)
 
@@ -93,6 +92,12 @@ extension MenuViewController: MenuViewProtocol {
 
 extension MenuViewController {
 
+    override func setupSubviews() {
+        super.setupSubviews()
+
+        title = "Меню"
+    }
+
     override func embedSubviews() {
 
         view.addSubviews(menuCollectionView, openPaymentButton)
@@ -120,9 +125,11 @@ extension MenuViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension MenuViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        CGSize(width: 150, height: 150)
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemWidth = collectionView.bounds.size.width/2-20
+        let itemHeight = 1.3 * itemWidth
+        return CGSize(width: itemWidth, height: itemHeight)
+    }
 }
 
 // MARK: - UICollectionViewDataSource

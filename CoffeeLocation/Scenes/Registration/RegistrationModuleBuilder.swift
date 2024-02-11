@@ -15,10 +15,16 @@ final class RegistrationModuleBuilder {
         let networkManager = NetworkManager.shared
         let networkService = RegistrationService(netwokManager: networkManager)
         let keychainManager = KeychainManager.shared
-        let interactor = RegistrationInteractor(networkService: networkService,keychainManager: keychainManager)
+        let interactor = RegistrationInteractor(
+            networkService: networkService,
+            keychainManager: keychainManager
+        )
         let router = RegistrationRouter(view: view)
-        let presenter = RegistrationPresenter(view: view, interactor: interactor, router: router)
-
+        let presenter = RegistrationPresenter(
+            view: view,
+            interactor: interactor,
+            router: router
+        )
 
         view.presenter = presenter
         interactor.presenter = presenter

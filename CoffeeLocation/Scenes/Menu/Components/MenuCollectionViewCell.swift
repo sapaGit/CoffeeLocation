@@ -46,6 +46,7 @@ final class MenuCollectionViewCell: BaseCollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.kf.indicatorType = .activity
 
         return imageView
     }()

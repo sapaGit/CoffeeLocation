@@ -31,9 +31,8 @@ extension MenuInteractor: MenuInteractorProtocol {
 
     func fetchMenu(id: Int) {
 
-        // move token to keychain
         guard let token = KeychainManager.shared.accessToken else {
-            presenter?.error(typeError: .login)
+            presenter?.sessionExpired()
             return
         }
         networkService.fetchMenu(id: id,token: token) { [weak self] result in
@@ -44,7 +43,7 @@ extension MenuInteractor: MenuInteractorProtocol {
                 self?.presenter?.didEndFetchMenu()
 
             case .error:
-                self?.presenter?.error(typeError: .fetch)
+                self?.presenter?.sessionExpired()
             }
         }
     }

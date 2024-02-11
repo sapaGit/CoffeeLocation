@@ -133,6 +133,13 @@ extension RegistrationViewController: RegistrationViewProtocol {
 // MARK: - SetupSubviews
 
 extension RegistrationViewController {
+
+    override func setupSubviews() {
+        super.setupSubviews()
+
+        title = "Регистрация"
+    }
+
     override func embedSubviews() {
         verticalStack.addArrangedSubviews(
             loginLabel,
