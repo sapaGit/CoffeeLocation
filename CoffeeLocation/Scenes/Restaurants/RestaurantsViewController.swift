@@ -6,6 +6,11 @@
 import UIKit
 import SnapKit
 
+private enum Constants {
+    static let locationButtonInset: CGFloat = 20.0
+    static let tableViewInset: CGFloat = 7.0
+}
+
 protocol RestaurantsViewProtocol: AnyObject {
     /// Notifies that new data has been received.
     func didReceiveData()
@@ -57,11 +62,10 @@ final class RestaurantsViewController: BaseViewController {
     @objc
     private func didTapShowLocation() {
         presenter.didTapShowLocation()
-//        presenter.didTapLogin(login: login, password: password)
     }
 }
 
-// MARK: - LoginViewProtocol
+// MARK: - RestaurantsViewProtocol
 
 extension RestaurantsViewController: RestaurantsViewProtocol {
     func showAlert(title: String, message: String) {
@@ -97,13 +101,14 @@ extension RestaurantsViewController {
 
     override func setupConstraints() {
         showLocationButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
+            $0.leading.trailing.equalToSuperview().inset(Constants.locationButtonInset)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(Constants.locationButtonInset)
         }
 
         restaurantsTableView.snp.makeConstraints {
-            $0.leading.trailing.top.equalToSuperview().inset(7)
-            $0.bottom.equalTo(showLocationButton.snp.top).inset(-10)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(Constants.tableViewInset)
+            $0.leading.trailing.equalToSuperview().inset(Constants.tableViewInset)
+            $0.bottom.equalTo(showLocationButton.snp.top).inset(-Constants.tableViewInset)
         }
     }
 }

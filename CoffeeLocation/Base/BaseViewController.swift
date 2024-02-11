@@ -30,9 +30,11 @@ extension BaseViewController {
 
     /// Sets the color of the navigation bar.
     ///
-    /// - Parameter color: The color for the navigation bar.
-    func setupNavigationBar(color: UIColor = .white) {
-        navigationController?.navigationBar.barTintColor = color
+    /// - Parameter color: The tint color for the navigation bar.
+    func setupNavigationBar(color: UIColor = .labelText) {
+        navigationController?.navigationBar.tintColor = color
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: color]
+        navigationItem.backButtonDisplayMode = .minimal
     }
 
     /// Sets the visibility of the navigation bar.

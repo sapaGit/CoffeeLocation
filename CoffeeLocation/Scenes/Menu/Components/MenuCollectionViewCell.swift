@@ -12,6 +12,11 @@ private enum Constants {
     static let radius: CGFloat = 10.0
     static let padding: CGFloat = 6.0
     static let iconSize: CGFloat = 20.0
+    static let labelFontSize: CGFloat = 12.0
+    static let contentInset: CGFloat = 10.0
+    static let stepperBottomInset: CGFloat = 5.0
+    static let stepperWidthMultiplier: Float = 0.4
+    static let imageHeightMultiplier: Float = 0.7
 }
 
 protocol StepperWasChangedDelegate: AnyObject {
@@ -27,7 +32,7 @@ final class MenuCollectionViewCell: BaseCollectionViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 12, weight: .light)
+        label.font = UIFont.systemFont(ofSize: Constants.labelFontSize, weight: .light)
         label.textColor = .labelText
 
         return label
@@ -36,7 +41,7 @@ final class MenuCollectionViewCell: BaseCollectionViewCell {
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: Constants.labelFontSize, weight: .bold)
         label.textColor = .descriptionText
 
         return label
@@ -119,7 +124,6 @@ extension MenuCollectionViewCell {
         shadowDecorate()
     }
 
-
     override func embedSubviews() {
         contentView.addSubviews(
             photoImage,
@@ -136,25 +140,25 @@ extension MenuCollectionViewCell {
         photoImage.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.width.equalToSuperview()
-            $0.height.equalToSuperview().multipliedBy(0.7)
+            $0.height.equalToSuperview().multipliedBy(Constants.imageHeightMultiplier)
         }
 
         nameLabel.snp.makeConstraints {
-            $0.top.equalTo(photoImage.snp.bottom).inset(-10)
-            $0.leading.trailing.equalToSuperview().inset(10)
+            $0.top.equalTo(photoImage.snp.bottom).inset(-Constants.contentInset)
+            $0.leading.trailing.equalToSuperview().inset(Constants.contentInset)
         }
 
         priceLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom)
-            $0.leading.equalToSuperview().inset(10)
+            $0.leading.equalToSuperview().inset(Constants.contentInset)
         }
 
         stepperView.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom)
-            $0.trailing.equalToSuperview().inset(10)
-            $0.width.equalToSuperview().multipliedBy(0.4)
+            $0.trailing.equalToSuperview().inset(Constants.contentInset)
+            $0.width.equalToSuperview().multipliedBy(Constants.stepperWidthMultiplier)
             $0.height.equalTo(priceLabel.snp.height)
-            $0.bottom.equalToSuperview().inset(5)
+            $0.bottom.equalToSuperview().inset(Constants.stepperBottomInset)
         }
     }
 }

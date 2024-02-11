@@ -171,6 +171,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		A025D1822B78E74100015EC6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A01AE6F42B77CB8C00B26D66 /* CustomStepper.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		A045FCCE2B6E86BC00BA3518 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +234,7 @@
 				A0D8D3DF2B6CDB770018C98F /* Common */,
 				A0D8D3DA2B6CDB2C0018C98F /* Extensions */,
 				A0D8D3C62B6CD9F30018C98F /* Storyboards */,
+				A025D1822B78E74100015EC6 /* Components */,
 				A0D8D3C72B6CDA0D0018C98F /* Resources */,
 			);
 			path = CoffeeLocation;
@@ -430,7 +439,6 @@
 			isa = PBXGroup;
 			children = (
 				A0FA301B2B762E8E00A07735 /* MenuCollectionViewCell.swift */,
-				A01AE6F42B77CB8C00B26D66 /* CustomStepper.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";

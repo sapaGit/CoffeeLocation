@@ -7,17 +7,13 @@ import Foundation
 
 protocol MenuPresenterProtocol: BasePresenterProtocol {
     var menuArray: [MenuModel] { get set }
-
+    var orderArray: [Order] { get set }
     var restaurantId: Int { get set }
 
     func didEndFetchMenu()
-
     func didTapOpenPayment()
-
     func sessionExpired()
-
     func changeOrder(id: Int, amount: Int)
-
     func error(typeError: TypeError)
 }
 
@@ -26,7 +22,6 @@ final class MenuPresenter {
     // MARK: - Properties
 
     var menuArray: [MenuModel] = []
-
     var orderArray: [Order] = []
 
     // MARK: - Dependencies
@@ -65,6 +60,13 @@ extension MenuPresenter: MenuPresenterProtocol {
     }
 
     func didTapOpenPayment() {
+        guard !interactor.isOrderIsEmpty() else { 
+            view?.showAlert(
+                title: "Ошибка",
+                message: "Пожалуйста добавьте блюда в ваш заказ"
+            )
+            return
+        }
         router.routToPayment(order: orderArray)
     }
 

@@ -17,10 +17,16 @@ final class LoginModuleBuilder {
         let networkService = LoginService(netwokManager: networkManager)
         let keychainManager = KeychainManager.shared
         let navigationManager = NavigationManager.shared
-        let interactor = LoginInteractor(networkService: networkService,keychainManager: keychainManager)
+        let interactor = LoginInteractor(
+            networkService: networkService,
+            keychainManager: keychainManager
+        )
         let router = LoginRouter(navigationManager: navigationManager)
-        let presenter = LoginPresenter(view: view, interactor: interactor, router: router)
-
+        let presenter = LoginPresenter(
+            view: view,
+            interactor: interactor,
+            router: router
+        )
 
         view.presenter = presenter
         interactor.presenter = presenter

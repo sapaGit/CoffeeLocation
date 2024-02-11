@@ -3,9 +3,14 @@
 //  CoffeeLocation
 //
 
-
 import UIKit
 import SnapKit
+
+private enum Constants {
+    static let cornerRadius: CGFloat = 22.0
+    static let fontSize: CGFloat = 15.0
+    static let heightSize: CGFloat = 44.0
+}
 
 final class BaseButton: UIButton {
     
@@ -21,7 +26,6 @@ final class BaseButton: UIButton {
     }
 }
 
-
 // MARK: - Setup Subviews
 
 extension BaseButton {
@@ -29,15 +33,15 @@ extension BaseButton {
     func setupSubviews() {
         backgroundColor = .buttonBackground
         setTitleColor(.buttonText, for: .normal)
-        titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        layer.cornerRadius = 22
+        titleLabel?.font = UIFont.systemFont(ofSize: Constants.fontSize, weight: .bold)
+        layer.cornerRadius = Constants.cornerRadius
 
         setupConstraints()
     }
 
     func setupConstraints() {
         snp.makeConstraints {
-            $0.height.equalTo(44)
+            $0.height.equalTo(Constants.heightSize)
         }
     }
 }

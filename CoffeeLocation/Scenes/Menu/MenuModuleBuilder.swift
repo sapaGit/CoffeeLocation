@@ -9,7 +9,7 @@ final class MenuModuleBuilder {
 
     /// Assembly the main components for the Restaurants screen.
     ///
-    /// - Returns: An instance of `RestaurantsViewController` configured with its associated presenter and router.
+    /// - Returns: An instance of `MenuViewController` configured with its associated presenter and router.
     class func build(restaurantId: Int) -> MenuViewController {
         let view = MenuViewController()
         let networkManager = NetworkManager.shared

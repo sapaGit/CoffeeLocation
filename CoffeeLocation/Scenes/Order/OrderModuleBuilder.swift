@@ -22,7 +22,6 @@ final class OrderModuleBuilder {
             order: order
         )
 
-
         view.presenter = presenter
         interactor.presenter = presenter
 

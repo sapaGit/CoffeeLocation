@@ -16,10 +16,19 @@ final class RestaurantsModuleBuilder {
         let networkService = RestaurantsService(netwokManager: networkManager)
         let keychainManager = KeychainManager.shared
         let navigationManager = NavigationManager.shared
-        let interactor = RestaurantsInteractor(networkService: networkService,keychainManager: keychainManager)
-        let router = RestaurantsRouter(view: view, navigarionManager: navigationManager)
-        let presenter = RestaurantsPresenter(view: view, interactor: interactor, router: router)
-
+        let interactor = RestaurantsInteractor(
+            networkService: networkService,
+            keychainManager: keychainManager
+        )
+        let router = RestaurantsRouter(
+            view: view,
+            navigarionManager: navigationManager
+        )
+        let presenter = RestaurantsPresenter(
+            view: view,
+            interactor: interactor,
+            router: router
+        )
 
         view.presenter = presenter
         interactor.presenter = presenter

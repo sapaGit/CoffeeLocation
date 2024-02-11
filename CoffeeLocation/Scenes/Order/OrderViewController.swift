@@ -6,14 +6,19 @@
 import UIKit
 import SnapKit
 
+private enum Constants {
+    static let payButtonInset: CGFloat = 20.0
+    static let infoLabelBottomInset: CGFloat = 100.0
+    static let infoLabelInset: CGFloat = 20.0
+    static let tableViewInset: CGFloat = 7.0
+    static let infoLabelFontSize: CGFloat = 22.0
+}
+
 protocol OrderViewProtocol: AnyObject {
     /// Notifies that new data has been received.
     func didReceiveData()
 
     func showAlert(title: String, message: String)
-
-    /// Navigates to ViewController
-    func pushViewController(_ viewController: UIViewController, animated: Bool)
 }
 
 final class OrderViewController: BaseViewController {
@@ -37,10 +42,10 @@ final class OrderViewController: BaseViewController {
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.numberOfLines = 0
+        label.numberOfLines = .zero
         label.textColor = .labelText
         label.text = "Время ожидания заказа 15 минут!\n Спасибо, что выбрали нас!"
-        label.font = .systemFont(ofSize: 22, weight: .semibold)
+        label.font = .systemFont(ofSize: Constants.infoLabelFontSize, weight: .semibold)
 
         return label
     }()
@@ -113,18 +118,18 @@ extension OrderViewController {
 
     override func setupConstraints() {
         payButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
+            $0.leading.trailing.equalToSuperview().inset(Constants.payButtonInset)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(Constants.payButtonInset)
         }
 
         infoLabel.snp.makeConstraints {
-            $0.bottom.equalTo(payButton.snp.top).inset(-100)
-            $0.leading.trailing.equalToSuperview().inset(30)
+            $0.bottom.equalTo(payButton.snp.top).inset(-Constants.infoLabelBottomInset)
+            $0.leading.trailing.equalToSuperview().inset(Constants.infoLabelInset)
         }
 
         orderTableView.snp.makeConstraints {
-            $0.leading.trailing.top.equalToSuperview().inset(7)
-            $0.bottom.equalTo(infoLabel.snp.top).inset(50)
+            $0.leading.trailing.top.equalToSuperview().inset(Constants.tableViewInset)
+            $0.bottom.equalTo(infoLabel.snp.top).inset(-Constants.tableViewInset)
         }
     }
 }

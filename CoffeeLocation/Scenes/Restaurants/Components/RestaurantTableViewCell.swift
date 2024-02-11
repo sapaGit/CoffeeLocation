@@ -10,6 +10,11 @@ private enum Constants {
     static let backgroundCornerRadius: CGFloat = 10.0
     static let padding: CGFloat = 20.0
     static let backgroundInset: CGFloat = 3.0
+    static let contentInset: CGFloat = 8.0
+    static let nameLabelFontSize: CGFloat = 18.0
+    static let descriptionLabelFontSize: CGFloat = 14.0
+    static let shadowOffset: CGFloat = 2.0
+    static let shadowOpacity: Float = 0.5
 }
 
 final class RestaurantsTableViewCell: BaseTableViewCell {
@@ -19,7 +24,7 @@ final class RestaurantsTableViewCell: BaseTableViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: Constants.nameLabelFontSize, weight: .bold)
         label.textColor = .labelText
 
         return label
@@ -28,7 +33,7 @@ final class RestaurantsTableViewCell: BaseTableViewCell {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        label.font = UIFont.systemFont(ofSize: Constants.descriptionLabelFontSize, weight: .light)
         label.textColor = .descriptionText
 
         return label
@@ -38,6 +43,10 @@ final class RestaurantsTableViewCell: BaseTableViewCell {
         let view = UIView()
         view.backgroundColor = .buttonText
         view.layer.cornerRadius = Constants.backgroundCornerRadius
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = Constants.shadowOpacity
+        view.layer.shadowOffset = CGSize(width: .zero, height: Constants.shadowOffset)
+        view.layer.shadowRadius = Constants.shadowOffset
 
         return view
     }()
@@ -70,12 +79,12 @@ extension RestaurantsTableViewCell {
     override func setupConstraints() {
         nameLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(Constants.padding)
-            $0.leading.equalToSuperview().inset(8)
+            $0.leading.equalToSuperview().inset(Constants.contentInset)
         }
 
         descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.bottom).inset(-8)
-            $0.leading.equalToSuperview().inset(8)
+            $0.top.equalTo(nameLabel.snp.bottom).inset(-Constants.contentInset)
+            $0.leading.equalToSuperview().inset(Constants.contentInset)
             $0.bottom.equalToSuperview().inset(Constants.padding)
         }
 
